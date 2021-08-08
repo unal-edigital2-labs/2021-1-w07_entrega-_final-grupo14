@@ -14,8 +14,6 @@ A continuación haremos una breve explicacion del Soc, el firmware y los perfife
 
 En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishone y los diferentes módulos de los perifericos que componen el robot. 
 
-![Screenshot](/Imagenes/SoC.png)
-
 ## [Firmware](w07_entrega-_final-grupo14/Camara.md )
 
 ## Periféricos 
