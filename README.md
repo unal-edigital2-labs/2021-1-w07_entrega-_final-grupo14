@@ -1,5 +1,5 @@
-:EMOJICODE:
-# Entrega Final - Digital II - Grupo 14
+# Entrega Final - Digital II 
+## Grupo 14
 
 
 # Autores :fountain_pen:
