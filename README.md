@@ -13,9 +13,16 @@ A continuación haremos una breve explicacion del Soc y mostraremos los links pa
 - Diego Steven Peña Cortes :mechanic:
 - Daniel Machado Roa :technologist:
 - Andrés Felipe Rodríguez Contreras :office_worker:
- 
-## [Camara](w07_entrega-_final-grupo14/Camara.md )
-## [Radar](w07_entrega-_final-grupo14/Camara.md )
-## [Motores](w07_entrega-_final-grupo14/Camara.md )
-## [Infrarrojos](w07_entrega-_final-grupo14/Camara.md )
+
+## [SoC](w07_entrega-_final-grupo14/Camara.md )
+
+## [Firmware](w07_entrega-_final-grupo14/Camara.md )
+
+## Perifericos 
+- [Camara](w07_entrega-_final-grupo14/Camara.md )
+- [Radar](w07_entrega-_final-grupo14/Camara.md )
+- [Motores](w07_entrega-_final-grupo14/Camara.md )
+- [Infrarrojos](w07_entrega-_final-grupo14/Camara.md )
+- [DFP player mini](w07_entrega-_final-grupo14/Camara.md )
+- [Bluetooth](w07_entrega-_final-grupo14/Camara.md )
 
