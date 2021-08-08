@@ -19,7 +19,7 @@ Dentro del enlace de firmware se encuentra la información del código usado par
 
 ## Periféricos 
 Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, cada uno de estos links mostraran el módulo en verilog y su archivo .py respectivo, a su vez se hace una explicación detallada del código utilizado para el funcionamiento del módulo de cada periférico.
-- [Camara](w07_entrega-_final-grupo14/Camara.md )
+- [Cámara](w07_entrega-_final-grupo14/Camara.md )
 - [Radar](w07_entrega-_final-grupo14/Camara.md )
 - [Motores](w07_entrega-_final-grupo14/Camara.md )
 - [Infrarrojos](w07_entrega-_final-grupo14/Camara.md )
