@@ -1,6 +1,9 @@
 :EMOJICODE:
-# Entrega Final grupo 14
-- Diego Steven Peña Cortes :eggplant:
+# Entrega Final - Digital II - Grupo 14
+
+
+# Autores :fountain_pen:
+- Diego Steven Peña Cortes :mechanic:
 - Daniel Machado Roa :shipit:
 - Andrés Felipe Rodríguez Contreras :confused:
  
