@@ -1,5 +1,9 @@
 # Entrega Final - Digital II - Grupo 4
-Este es el repositorio del proyecto final de la asignatura Electrónica Digital II del semestre 2021-1 (Universidad Nacional de Colombia - Sede Bogotá). A continuación se mostrara el proyecto de un Robot Cartográfico conformado por una arquitectura de SoC, la cual a partir de diferentes modulos que le permiten cumplir su objetivo, siendo este avanzar por un laberinto con el fin de identificar y mapear en una matriz los muros encontrados y el color que poseen estos. Los perifericos que se utilizaron en el proyecto para complementar al procesador fueron una camara (ref), infrarrojos(), un par de motores manejados a partir de un puente H, una conexión bluetooth, un DFP player mini, un motor paso a paso y un ultrasonido.
+Este es el repositorio del proyecto final de la asignatura Electrónica Digital II del semestre 2021-1 (Universidad Nacional de Colombia - Sede Bogotá). A continuación se mostrara el proyecto de un Robot Cartográfico conformado por una arquitectura de SoC, la cual a partir de diferentes modulos que le permiten cumplir su objetivo, siendo este avanzar por un laberinto con el fin de identificar y mapear en una matriz los muros encontrados y el color que poseen estos. 
+
+
+
+Los perifericos que se utilizaron en el proyecto para complementar al procesador fueron una camara (ref), infrarrojos(), un par de motores manejados a partir de un puente H, una conexión bluetooth, un DFP player mini, un motor paso a paso y un ultrasonido.
 
 
 <br>
