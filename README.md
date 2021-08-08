@@ -23,6 +23,6 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 - [Radar](w07_entrega-_final-grupo14/Camara.md )
 - [Motores](w07_entrega-_final-grupo14/Camara.md )
 - [Infrarrojos](w07_entrega-_final-grupo14/Camara.md )
-- [DFP player mini](w07_entrega-_final-grupo14/Camara.md )
-- [Bluetooth](w07_entrega-_final-grupo14/Camara.md )
+- [DFP player mini y Bluetooth](w07_entrega-_final-grupo14/Camara.md )
+
 
