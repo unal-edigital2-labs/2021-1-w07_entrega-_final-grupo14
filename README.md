@@ -1,4 +1,4 @@
-:EMOJICODE:
+
 # Entrega Final grupo 14
 - Diego Steven Peña Cortes
 - Daniel Machado Roa :shipit:
