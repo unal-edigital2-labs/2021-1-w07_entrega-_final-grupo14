@@ -12,7 +12,7 @@ A continuación haremos una breve explicación del Soc, el firmware y los perfif
 
 ## [SoC](w07_entrega-_final-grupo14/Camara.md )
 
-En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishbone y los diferentes módulos de los perifericos que componen el robot. 
+En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishbone y los diferentes módulos de los periféricos que componen el robot. 
 
 ## [Firmware](w07_entrega-_final-grupo14/Camara.md )
 Dentro del enlace de firmware se encuentra la información del código usado para el desarrollo del funcionamiento del robot cartógrafo, de igual forma se puede observar la explicación de las funciones que se encuentran dentro del archivo *main.c*.
