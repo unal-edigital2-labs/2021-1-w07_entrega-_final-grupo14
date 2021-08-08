@@ -8,7 +8,7 @@ Este es el repositorio del proyecto final de la asignatura Electrónica Digital 
 
 Los periféricos que se utilizaron en el proyecto, para complementar al procesador, fueron una camara (OV7670), infrarrojos (Sensor de seguidor de linea de 5 canales), un par de motores manejados a partir de un puente H, una conexión bluetooth HC-05, un DFP player mini, un motor paso a paso y un ultrasonido HC-sr04.
 
-A continuación haremos una breve explicacion del Soc y mostraremos los links para observar el funcionamiento de cada uno de estos perfifericos integrados al Soc.
+A continuación haremos una breve explicacion del Soc, el firmware y los perfifericos integrados al Soc con sus respectivos links en donde se puede observar su funcionamiento más en detalle.
 
 ## [SoC](w07_entrega-_final-grupo14/Camara.md )
 
