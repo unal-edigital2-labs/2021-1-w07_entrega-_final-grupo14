@@ -4,8 +4,8 @@
 
 # Autores :fountain_pen:
 - Diego Steven Peña Cortes :mechanic:
-- Daniel Machado Roa :shipit:
-- Andrés Felipe Rodríguez Contreras :confused:
+- Daniel Machado Roa :technologist:
+- Andrés Felipe Rodríguez Contreras :office_worker:
  
 [Camara](w07_entrega-_final-grupo14/Camara.md )
 [Radar](w07_entrega-_final-grupo14/Camara.md )
