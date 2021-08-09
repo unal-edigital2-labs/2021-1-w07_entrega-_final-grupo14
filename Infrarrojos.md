@@ -3,16 +3,16 @@ El periferico de de los sensores seguidores de linea que funcionan a partir de i
 
 
 
+![Screenshot](/Imagenes/Contador.PNG)
 
 
+    `timescale 1ns / 1ps
 
-`timescale 1ns / 1ps
+    module infrarrojo(
+      input [4:0] infras,
+      output [4:0] infras2
+    );
 
-module infrarrojo(
-  input [4:0] infras,
-  output [4:0] infras2
-);
+      assign infras2 = infras;
 
-  assign infras2 = infras;
-
-endmodule
+    endmodule
