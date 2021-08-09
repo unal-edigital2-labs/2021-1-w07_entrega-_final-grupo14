@@ -123,10 +123,41 @@ A contnuacion explicaremos el funcionamiento de la variable "posicion"  para est
 | Frente | 010 |  0x2 |
 | Derecha | 100 |  0x4  |
       
-Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la variable posición nos dira que paredes estan ocupadas con la suma de estos valores dentro de los if que nos dicen si detecto pared. Es decir si detecto paredes a la izquierda y derecha significa que posicion tendria el valor de 0x5, si detecto 3 paredes posicion seria 0x7. Esto sera de gran importancia para el desarrollo de la función principal carro() en donde su principla papel sera servirnos como guia para el dibujo de la matriz.
+Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la variable posición nos dira que paredes estan ocupadas con la suma de estos valores dentro de los if que nos dicen si detecto pared. Es decir si detecto paredes a la izquierda y derecha significa que posicion tendria el valor de 0x5, si detecto 3 paredes posicion seria 0x7. Por ultimo, la funcion radar() nos retorna este valor de posicion, esto sera de gran importancia para el desarrollo de la función principal carro() en donde su principal papel sera servirnos como guia para el dibujo de la matriz.
 
 ## :heavy_check_mark: enviarM();
 
+
+    for(int i = 0; i < 5; i++) { 	
+            for(int j = 0; j < 6; j++) {
+                switch(matriz[j][i]){ 		/* azul=1, verde=2, rojo=3 */
+
+ dwd
+ 
+    case 1:
+                    uart1_write(65);
+                    delay_ms(10);
+                    break;
+                    case 2:
+                    uart1_write(86);
+                    delay_ms(10);
+                    break;
+                    case 3:
+                    uart1_write(82);
+                    delay_ms(10);
+                    break;
+         
+dw
+
+         uart1_write(10);
+		delay_ms(10);
+    	}
+	uart1_write(10);
+	delay_ms(10);
+	uart1_write(10);
+	delay_ms(10);
+    
+    
 ## :heavy_check_mark:  avanzar();
 
 ## :heavy_check_mark: girarD();
