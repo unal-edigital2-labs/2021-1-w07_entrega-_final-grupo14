@@ -173,5 +173,47 @@ Estas dos funciones se encargan del movimiento del robot, si gira hacia la izqui
 		delay_ms(50);
 
 ## :heavy_check_mark:  carro()
+Ahora mostraremos nuestra función principal, la cual se encarga de que el robot pueda andar por el laberinto, identificar las paredes con su color y rellenar la matriz, para esto primero se crean diferentes variable spara luego hacer el llamado de las funciones, se le asigna una posicion inicial al robot en la matriz y se le asiga un valor a *dir* que hace referencia a la dirección, es decir que toma un valor diferente si mirahacia el norte, sur, este u oeste. 
 
+        unsigned int radar1;
+	unsigned int infras;
+	unsigned int enviarMz;
+	unsigned int posX=3;
+	unsigned int posY=5;
+	unsigned int dir=0; /* 0 arriba, 1 derecha, 2 abajo*/
+        
+Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al DFP paleyer mini, luego se crea un rellena la matriz del mapa con 0 a partir de dos funciones *for*. Despues de esto se usa la función **sendInfo()** para reproducir un audio y dar inicio al recorrido del robot.
+	
+	DFP_setup(); /* Se establecen los valores del DFP*/
+	for(int i = 0; i < 6; i++) { 		/* Rellenar la matriz de 0 */
+		for(int j = 0; j < 5; j++) {
+		matriz[i][j] = 0;
+		}
+    	}
+        sendInfo(0x03,0x00,0x02);
+        delay_ms(2000);
+        sendInfo(0x16,0x00,0x00);
+	
+El proceso de recorrido comienza con un while que comienza gracias a oprimir un boton, luego se ejecuta radar y el infrarrojo para comenzar el recorrido, luego se usa lo que retorno la función **radar()** que anteriormente conocimos como *posicion* hasta que vea las 3 paredes ocupadas saldra de un while, El robot seguira en ese while hasta que llegue al final de laberinto.
+	
+	while(!(buttons_in_read()&1)) {
+		
+		radar1 = radar();
+		infras = infrarrojo();
+		delay_ms(2000);
 
+		while(radar1!=0x7){
+		   radar1 = radar();
+		   
+Depues volvemos a ejecutar radar, segun su retorno entraremos en un switch en donde tendremos 3 casos, 0x5 si los lados estan ocupados y alfrente libre, 0x3 cuando la izquierda y al frente estan ocupados mientras que la derecha esta libre, y 0x6 derecha y frente ocupados mientras que la izquierda esta libre. A partir de esto entra en una serie de *if* cada uno haciendo comparaciones si ambas paredes ocupadas son de un color. Como esta en la sección de codigo que se muestra a continuación compara si el arreglo color para la derecha y la izquierda poseen el valor de 1, es decir si son azules, luego de esto observa que direccion posee el robot y a partir de eso cambia los valores de la matriz según donde se encuentre la decir que que paredes vio y con que color. Por ultimo mueve la posición en X o Y para actualizar su posición ya que se ejecuto la función **avanzar()**
+
+	  switch (radar1){
+              case 0x5:
+                if(color[2]==1 && color[0]==1){ /* lados ocupado, frente vacio, A A*/
+			      avanzar();
+			      delay_ms(1000);
+			        if(dir==0){
+				      matriz[posY][posX-1]=1; 	  
+				      matriz[posY][posX+1]=1;
+				      posY-=1;
+			        }
