@@ -21,3 +21,57 @@ Se establecen los valores de los registros de la cámara por medio del protocolo
 De igual forma tambien se establecen una serie de registros, que se denominaron "Registros magicos", con el fin de que la imagen obtenida por la cámara sea de mejor calidad.
 
 ## Captura de datos (*cam_read.v*)
+En este módulo se realiza la captura de datos de la cámara y se envían a la memoria RAM, además de realizar la conversión del formato RGB565 a RGB332. El diagrama de bloques que describe el proceso es el siguiente:
+
+![Screenshot](/Imagenes/camara2.PNG)
+
+La conversión del formato RGB se lleva a cabo por medio de un proceso denominado downsampling, y se basa en reducir el tamaño de la información seleccionando los datos más significativos, despues de este proceso es posible almacenar la información de un pixel en un byte a diferencia del formato RGB565 en donde se utilizaban dos bytes por pixel.
+
+![Screenshot](/Imagenes/camara3.PNG)
+
+El código utilizado para llevar a cabo este proceso es el siguiente:
+```verilog
+always @(posedge pclk)begin
+	if (!rst)begin
+		if(init && !init_old)begin
+			start <= 1;
+			done <= 0;
+		end
+		if(start>0 && (!vsync && vsync_old))begin
+			start <=2;
+		end
+		if(start == 2 && (vsync && !vsync_old))begin
+			mem_px_addr <= 15'h7fff;
+			px_wr <= 0;
+			start <= 0;
+			if(count >= 19200)begin
+				done <= 1;
+				error <= 0;
+			end else begin
+				error <= 1;
+				done <= 0;
+			end
+		end
+			if(start==2)begin
+				if(href)begin
+					if(countData == 0)begin
+						mem_px_data[7:2] <= {px_data[7:5],px_data[2:0]} ;
+						countData <= 1;
+						px_wr <= 0;
+					end
+					if(countData == 1)begin
+						mem_px_data[1:0] <= {px_data[4:3]} ;
+						mem_px_addr <= mem_px_addr + 1;
+						px_wr <= #1 1;
+						countData <= 0;
+						count <= count+1;
+					end
+				end else begin
+					px_wr <= 0;
+				end
+			end 
+	end
+	init_old = init;
+	vsync_old = vsync;
+end
+```
