@@ -6,6 +6,8 @@
 
 Este es el repositorio del proyecto final de la asignatura Electrónica Digital II del semestre 2021-1 (Universidad Nacional de Colombia - Sede Bogotá). A continuación se mostrará el proyecto de un Robot Cartográfico conformado por una arquitectura de SoC, donde a partir de un micropocesador y diferentes periféricos se realizan operaciones que permiten al robot avanzar por un laberinto con el fin de identificar y mapear en una matriz los muros encontrados y el color correspondiente a estos. 
 
+![Screenshot](/Imagenes/robot.jpeg)
+
 Los periféricos que se utilizaron en el proyecto, para complementar al procesador, fueron una camara (OV7670), infrarrojos (Sensor de seguidor de linea de 5 canales), un par de motores manejados a partir de un puente H, una conexión bluetooth HC-05, un DFP player mini, un motor paso a paso y un ultrasonido HC-sr04.
 
 A continuación haremos una breve explicación del Soc, el firmware y los perfiféricos integrados al Soc junto a sus respectivos links en donde se puede observar su funcionamiento más en detalle.
