@@ -6,7 +6,7 @@ Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
 Se establecen los valores de los registros de la cámara por medio del protocolo de comunicación serial I2C, se utilizo un microcontrolador Arduino para llevar a cabo este proceso y se describe en el archivo *Camara_OV.ino*. El código con el cual se establecen los registros y el formato de la cámara es el siguiente:
 ```c
-    OV7670_write(0xFF, 0xF0); 
+     OV7670_write(0xFF, 0xF0); 
      OV7670_write(0x12, 0x0C);  //COM7: Set QCIF and RGB
      //OV7670_write(0x12, 0x04);  //COM7: Set RGB
      OV7670_write(0x11, 0xC0);       //CLKR: Set internal clock to use external clock
