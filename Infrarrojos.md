@@ -3,7 +3,7 @@ El periferico de de los sensores seguidores de linea que funcionan a partir de i
 
 
 
-![Screenshot](/Imagenes/Contador.PNG)
+![Screenshot](/Imagenes/GPIOir.jpg)
 
 
     `timescale 1ns / 1ps
