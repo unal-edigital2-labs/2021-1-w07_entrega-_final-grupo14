@@ -5,6 +5,7 @@ Para el desarrollo de los drivers correspondientes a este periférico nos guiamo
 
 ### Módulo Contador (*contador.v*)
 Las funciones de este módulo son activar la generación del pulso que le indica al ultrasonido que debe inciar a operar, y calcular la distancia entre el ultrasonido y la pared midiendo el ancho de la señal *echo*, la cual es la salida del ultrasonido y proporcional a la distancia. Para que la proporción entre el ancho de la señal y la distancia sea 1 a 1 se utiliza un divisor de frecuencia para generar un reloj cuyos ciclos son equivalentes al tiempo que se demora la señal emitida por el ultrasonido en recorrer 1 cm. Los diagramas de bloques que representan el funcionamiento del módulo son los siguientes:
+
 ![Screenshot](/Imagenes/Contador.PNG)
 ![Screenshot](/Imagenes/PWM_ultra.PNG)
 
