@@ -7,11 +7,12 @@ Para el desarrollo del firmware nos fijaremos en archivo main.c en el cual se en
 
 ## :heavy_check_mark: infrarrojo()
   Para la función infrarrojo primero se crean dos variables, al primera para obtener el valor que nos da el periferico y la segunda como una salida de la función que se utilizara mas adelante dentro de otras funciones.
-  
+ ```C
     unsigned int entrada = infra_cntrl_infras2_read();
     unsigned int salida=0;
+ ```
 A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones para poder entrar en ciertas condiciones, es decir que del modulo .v del infrarrojo se obtienen 5 bits, si el infrarrojo detecta cinta negra manda un 0 por el sensor que lo capto, es decir si ningun sensor detecto cinta negra excepto el de la mitad obtendremos 11011 que en hexadecimal seria 1B, a partir de esto generamos 4 casos, el ya mencionado que es para que el robot siga avanzado por su camino, 17 y 1D para saber si se desvio de su camino dado que un sensor de los lados detecto la cinta negra y por ultimo 00 que significa que todos los sensores detectaron cinta negra y de tal manera se sabe que se debe detener.
-
+```C
     if(entrada == 0x1b){
       salida = 0;
             printf("Siga: %x \n",infra_cntrl_infras2_read());
@@ -29,10 +30,10 @@ A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones pa
             printf("Pare: %x \n",infra_cntrl_infras2_read());
     }
     return salida;
-
+```
 ## :heavy_check_mark: sendInfo(CMD, p1, p2) y DFP_setup()
   Para la función sendInfo() se crean dos variables, la segunda que es un arreglo de 10 posiciones nos envia cada uno de los pares de bytes que necesita el DFP player para funcionar, esto se profundiza un poco mas dentro de la explicación del periferico. Esta función tiene 3 entradas con lo que se puede modificar el comando que se va a utilizar y los dos parametros, finalmente se envia este arreglo por medio de un for para ser transmitido por una uart al periferico.
-   
+  ```C 
     unsigned int checksum = -(Version_Byte + Command_Length + CMD + Acknowledge + param1 + param2);
     unsigned int  Command_line[10] = { Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge,
     param1, param2, HIGHBYTE(checksum), LOWBYTE(checksum), End_Byte};
@@ -40,9 +41,10 @@ A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones pa
     for(int i=0; i<10; i++){
     uart2_write(Command_line[i]);
     }
+ ```
 
 La función DFP_setup depende solamente de 3 llamados a la función sendInfo, en la cual le damos unos valores de entrada al iniciar el robot, darle un volumen al parlante de 25 (que se encuentra entre el rango de 0 a 30), este se logra con el comando 0x06. Que el DFP player reprodusca los audios sin ningun filtro, es decir normal con el comando 0x07. Y que use obtenga los audios de una memoria SD con el comando 0x09.
-
+```C
     //myDFPlayer.volume(25);
     // 7E FF 06 06 XX 00 19 XX EF 
     sendInfo(0x06,0x00,0x15);
@@ -54,13 +56,13 @@ La función DFP_setup depende solamente de 3 llamados a la función sendInfo, en
     //myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);
     // 7E FF 06 09 XX 00 02 XX EF 
     sendInfo(0x09,0x00,0x02);
- 
+ ```
 ## :heavy_check_mark: camara()
 Para la funcion de la camara se obtienen los valores que arroja el driver de la camara que son color, done y error. A partir de estos se genera una serie de if que nos dice si ya termino de tomar la imagen y no hay un error entra en unas condiciones según sea el valor que obtuvimos de la variable color. si es 001 significa que es azul, 010 verde, 100 rojo y 111 si no detecta la predominancia de alguno de estos colores. 
 
 ## :heavy_check_mark: radar()
 Para la funcion radar se le introducen dos funciones que anteriormente mencionamos, sendInfo() y camara(). Primero creamos unas variables para poder tomas los valores de distacion que obtenemos del ultrasonido y a su vez la posición del motor paso a paso por el PWM.
-
+```C
     unsigned int orden = 0;
     unsigned int distancia = 0;
     unsigned int limite_distancia = 10;
@@ -70,8 +72,9 @@ Para la funcion radar se le introducen dos funciones que anteriormente mencionam
     unsigned int enable = 1;
     unsigned int posicion =0;
     unsigned int cam=7;
+ ```
 Primero declaramos el funcionamiento cuando el radar esta mirando hacia la izquierda, de damos un valor a dutty para que el el motor apunte el ultrasonido a la izquierda, le damos el valor de 1 a orden para que se active el ultrasonido y obtenemos el valor de distacia gracias al modulo de ultrasonido.
-
+```C
     /* Izquierda */
     dutty = 40000; /* Servo gira a la izquierda*/
     pwm_cntrl_period_write(period);
@@ -81,10 +84,11 @@ Primero declaramos el funcionamiento cuando el radar esta mirando hacia la izqui
     ultra_cntrl_orden_write(orden);
     delay_ms(100);
     distancia = 2*ultra_cntrl_d_read(); /* Se obtiene el valor de la distancia al objeto*/
+ ```
 Este valor de distacia lo comparamos con una distancia limite que nosotros proponemos, es decir un valor maximo para decir si detecto una pared o no. Luego al valor de *posicion* se le sumo 0x1 esto se explicara a profundidad mas adelante pero la idea es que esta observando a la izquierda. LLamamos a la funcion camara, esta detectara la imagen y pasamos a un switch el cual encontramos diferentes casos segun el color que obtuvimos por la camara. segun el color detectado se le da un valor al arreglo color, la posicion *color[0]* es cuando el radar esta observando la izquierda, *color[1]* cuando el radar obserba al frente y *color[2]* cuando ve a la derecha. según esto se le asigna 1 si es azul, 2 si es verde y 3 si es rojo.
 
 Despues de hacer la asigancion al arreglo color se reproducen los respectivos audios para saber que color detecto, y depues de 2000 milisegundos (2 segundos) se vuelve a usar la funcion **sendInfo()** pero con el comando de parar con el fin de que el audio que se esta reproduciendo no entre en un bucle. Por ultimo en caso de que la distacia detectada a la pared sea mas grande de lo establecido saldra del *if*, le sumara al valor de *posicion* 0x0 y el valor de ornde sera 0 para que el ultrasonido detenga su proceso.
-
+```C
     if (distancia<limite_distancia){
         cam=camara();
         posicion += 0x1; 
@@ -114,7 +118,7 @@ Despues de hacer la asigancion al arreglo color se reproducen los respectivos au
       delay_ms(100);
       orden = 0;
       ultra_cntrl_orden_write(orden);
- 
+ ```
 A contnuacion explicaremos el funcionamiento de la variable *posicion* para esto como se observa en la siguiente tabla se encuentra los 3 casos segun a donde este mirando el radar.
 
 | Posición | Binario | Hexadecimal |
@@ -127,7 +131,7 @@ Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la va
 
 ## :heavy_check_mark: enviarM()
 Se creo una función para que envie la matriz y llegue por bluetooth a un celular con la aplicación de "Bluetooth termianl HC-05" en esta se le envia cada posición de la matriz por medio de dos **for** que nos permitan ir por cada posicion de las filas y luego cambiar de fila al terminar. A partir de eso simplemente si el valor de la matriz es un 1 enviara por bluetooth una A, si es 2 una V y ses 3 una R haciendo referencia al color de la pared que observo a sus constados. Se finaliza el primer **for** con un salto de linea para que se observe el cambio de fila.
-
+```C
     for(int i = 0; i < 5; i++) { 	
             for(int j = 0; j < 6; j++) {
                 switch(matriz[j][i]){ 		/* azul=1, verde=2, rojo=3 */
@@ -152,7 +156,7 @@ Se creo una función para que envie la matriz y llegue por bluetooth a un celula
 	delay_ms(10);
 	uart1_write(10);
 	delay_ms(10);
-    
+  ```
     
 ## :heavy_check_mark:  avanzar()
 DESPUES EXPLICO ESTO....
@@ -160,7 +164,7 @@ DESPUES EXPLICO ESTO....
 
 ## :heavy_check_mark: girarD() y girarI()
 Estas dos funciones se encargan del movimiento del robot, si gira hacia la izquierda o hacia la derecha. A contnuación solo mostraremos el codigo de **girarD()** ya que ambos codigos son similares. Podemos observar que se crean dos variables, la primera *tiempo* para decirle a los motores cuanto tiempo deben girar para poner el robot a 90° de su posición original y la segunda variable *estado* que le diga al modulo de **Motor** cuales motores debe girar y en que dirección. En este caso 0x3 significa que el motor de la izquierda gire hacia adelante y el de la derecha hacia atras para que haga el giro el robot, luego de hacer el giro detiene ambos motores con el estados 0x0, para el caso de **girarI()** el estado seria 0x4 para hacer el giro.
-
+```C
 	unsigned int tiempo = 1000;
 		unsigned int estado = 0x0;
 		delay_ms(50);
@@ -171,19 +175,18 @@ Estas dos funciones se encargan del movimiento del robot, si gira hacia la izqui
 		estado = 0x0;
 		motor_cntrl_estado_write(estado);
 		delay_ms(50);
-
+```
 ## :heavy_check_mark:  carro()
 Ahora mostraremos nuestra función principal, la cual se encarga de que el robot pueda andar por el laberinto, identificar las paredes con su color y rellenar la matriz, para esto primero se crean diferentes variable spara luego hacer el llamado de las funciones, se le asigna una posicion inicial al robot en la matriz y se le asiga un valor a *dir* que hace referencia a la dirección, es decir que toma un valor diferente si mirahacia el norte, sur, este u oeste. 
-
+```C
         unsigned int radar1;
-	unsigned int infras;
-	unsigned int enviarMz;
 	unsigned int posX=3;
 	unsigned int posY=5;
 	unsigned int dir=0; /* 0 arriba, 1 derecha, 2 abajo*/
-        
+ ```       
 Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al DFP paleyer mini, luego se crea un rellena la matriz del mapa con 0 a partir de dos funciones *for*. Despues de esto se usa la función **sendInfo()** para reproducir un audio y dar inicio al recorrido del robot.
-	
+
+ ```C	
 	DFP_setup(); /* Se establecen los valores del DFP*/
 	for(int i = 0; i < 6; i++) { 		/* Rellenar la matriz de 0 */
 		for(int j = 0; j < 5; j++) {
@@ -193,9 +196,10 @@ Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al D
         sendInfo(0x03,0x00,0x02);
         delay_ms(2000);
         sendInfo(0x16,0x00,0x00);
-	
+ ``` 	
 El proceso de recorrido comienza con un while que comienza gracias a oprimir un boton, luego se ejecuta radar y el infrarrojo para comenzar el recorrido, luego se usa lo que retorno la función **radar()** que anteriormente conocimos como *posicion* hasta que vea las 3 paredes ocupadas saldra de un while, El robot seguira en ese while hasta que llegue al final de laberinto.
-	
+
+```C	
 	while(!(buttons_in_read()&1)) {
 		
 		radar1 = radar();
@@ -204,9 +208,10 @@ El proceso de recorrido comienza con un while que comienza gracias a oprimir un 
 
 		while(radar1!=0x7){
 		   radar1 = radar();
-		   
+```		   
 Depues volvemos a ejecutar radar, segun su retorno entraremos en un switch en donde tendremos 3 casos, 0x5 si los lados estan ocupados y alfrente libre, 0x3 cuando la izquierda y al frente estan ocupados mientras que la derecha esta libre, y 0x6 derecha y frente ocupados mientras que la izquierda esta libre. A partir de esto entra en una serie de *if* cada uno haciendo comparaciones si ambas paredes ocupadas son de un color. Como esta en la sección de codigo que se muestra a continuación compara si el arreglo color para la derecha y la izquierda poseen el valor de 1, es decir si son azules, luego de esto observa que direccion posee el robot y a partir de eso cambia los valores de la matriz según donde se encuentre la decir que que paredes vio y con que color. Por ultimo mueve la posición en X o Y para actualizar su posición ya que se ejecuto la función **avanzar()**
 
+```C
 	  switch (radar1){
               case 0x5:
                 if(color[2]==1 && color[0]==1){ /* lados ocupado, frente vacio, A A*/
@@ -217,5 +222,5 @@ Depues volvemos a ejecutar radar, segun su retorno entraremos en un switch en do
 				      matriz[posY][posX+1]=1;
 				      posY-=1;
 			        }
-
+```
 Esto mismo pasa con los demas casos que toma el radar con su retorno de *posicion* y segun con que dirección se encuentre el robot, al final de cada uno de estos *case* se usa la función **enviarM()** para que el usuario obserbe que a visto el robot dentro del laberinto.  :ok_hand: :robot:
