@@ -5,7 +5,7 @@ Para el desarrollo del firmware nos fijaremos en archivo main.c en el cual se en
     unsigned int color[3];
 
 
-## :heavy_check_mark: infrarrojo();
+## :heavy_check_mark: infrarrojo()
   Para la función infrarrojo primero se crean dos variables, al primera para obtener el valor que nos da el periferico y la segunda como una salida de la función que se utilizara mas adelante dentro de otras funciones.
   
     unsigned int entrada = infra_cntrl_infras2_read();
@@ -30,7 +30,7 @@ A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones pa
     }
     return salida;
 
-## :heavy_check_mark: sendInfo(CMD, p1, p2); y DFP_setup();
+## :heavy_check_mark: sendInfo(CMD, p1, p2) y DFP_setup()
   Para la función sendInfo() se crean dos variables, la segunda que es un arreglo de 10 posiciones nos envia cada uno de los pares de bytes que necesita el DFP player para funcionar, esto se profundiza un poco mas dentro de la explicación del periferico. Esta función tiene 3 entradas con lo que se puede modificar el comando que se va a utilizar y los dos parametros, finalmente se envia este arreglo por medio de un for para ser transmitido por una uart al periferico.
    
     unsigned int checksum = -(Version_Byte + Command_Length + CMD + Acknowledge + param1 + param2);
@@ -55,10 +55,10 @@ La función DFP_setup depende solamente de 3 llamados a la función sendInfo, en
     // 7E FF 06 09 XX 00 02 XX EF 
     sendInfo(0x09,0x00,0x02);
  
-## :heavy_check_mark: camara();
+## :heavy_check_mark: camara()
 Para la funcion de la camara se obtienen los valores que arroja el driver de la camara que son color, done y error. A partir de estos se genera una serie de if que nos dice si ya termino de tomar la imagen y no hay un error entra en unas condiciones según sea el valor que obtuvimos de la variable color. si es 001 significa que es azul, 010 verde, 100 rojo y 111 si no detecta la predominancia de alguno de estos colores. 
 
-## :heavy_check_mark: radar(); 
+## :heavy_check_mark: radar()
 Para la funcion radar se le introducen dos funciones que anteriormente mencionamos, sendInfo() y camara(). Primero creamos unas variables para poder tomas los valores de distacion que obtenemos del ultrasonido y a su vez la posición del motor paso a paso por el PWM.
 
     unsigned int orden = 0;
@@ -81,9 +81,9 @@ Primero declaramos el funcionamiento cuando el radar esta mirando hacia la izqui
     ultra_cntrl_orden_write(orden);
     delay_ms(100);
     distancia = 2*ultra_cntrl_d_read(); /* Se obtiene el valor de la distancia al objeto*/
-Este valor de distacia lo comparamos con una distancia limite que nosotros proponemos, es decir un valor maximo para decir si detecto una pared o no. Luego a l valor de posición se le sumo 0x1 esto se explicara a profundidad mas adelante pero la idea es que esta observando a la izquierda. LLamamos a la funcion camara, esta detectara la imagen y pasamos a un switch el cual encontramos diferentes casos segun el color que obtuvimos por la camara. segun el color detectado se le da un valor al arreglo color, la posicion color[0] es cuando el radar esta observando la izquierda, color[1] cuando el radar obserba al frente y color[2] cuando ve a la derecha. según esto se le asigna 1 si es azul, 2 si es verde y 3 si es rojo.
+Este valor de distacia lo comparamos con una distancia limite que nosotros proponemos, es decir un valor maximo para decir si detecto una pared o no. Luego al valor de *posicion* se le sumo 0x1 esto se explicara a profundidad mas adelante pero la idea es que esta observando a la izquierda. LLamamos a la funcion camara, esta detectara la imagen y pasamos a un switch el cual encontramos diferentes casos segun el color que obtuvimos por la camara. segun el color detectado se le da un valor al arreglo color, la posicion *color[0]* es cuando el radar esta observando la izquierda, *color[1]* cuando el radar obserba al frente y *color[2]* cuando ve a la derecha. según esto se le asigna 1 si es azul, 2 si es verde y 3 si es rojo.
 
-Despues de hacer la asigancion al arreglo color se reproducen los respectivos audios para saber que color detecto, y depues de 2000 milisegundos (2 segundos) se vuelve a usar la funcion sendInfo pero con el comando de parar con el fin de que el audio que se esta reproduciendo no entre en un bucle. Por ultimo en caso de que la distacia detectada a la pared sea mas grande de lo establecido saldra del if, le sumara al avslor de posición 0x0 y el valor de ornde sera 0 para que el ultrasonido detenga su proceso.
+Despues de hacer la asigancion al arreglo color se reproducen los respectivos audios para saber que color detecto, y depues de 2000 milisegundos (2 segundos) se vuelve a usar la funcion **sendInfo()** pero con el comando de parar con el fin de que el audio que se esta reproduciendo no entre en un bucle. Por ultimo en caso de que la distacia detectada a la pared sea mas grande de lo establecido saldra del *if*, le sumara al valor de *posicion* 0x0 y el valor de ornde sera 0 para que el ultrasonido detenga su proceso.
 
     if (distancia<limite_distancia){
         cam=camara();
@@ -115,7 +115,7 @@ Despues de hacer la asigancion al arreglo color se reproducen los respectivos au
       orden = 0;
       ultra_cntrl_orden_write(orden);
  
-A contnuacion explicaremos el funcionamiento de la variable "posicion"  para esto como se observa en la siguiente tabla se encuentra los 3 casos segun a donde este mirando el radar.
+A contnuacion explicaremos el funcionamiento de la variable *posicion* para esto como se observa en la siguiente tabla se encuentra los 3 casos segun a donde este mirando el radar.
 
 | Posición | Binario | Hexadecimal |
 | ------------- | ------------- | ------------- |
@@ -123,18 +123,15 @@ A contnuacion explicaremos el funcionamiento de la variable "posicion"  para est
 | Frente | 010 |  0x2 |
 | Derecha | 100 |  0x4  |
       
-Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la variable posición nos dira que paredes estan ocupadas con la suma de estos valores dentro de los if que nos dicen si detecto pared. Es decir si detecto paredes a la izquierda y derecha significa que posicion tendria el valor de 0x5, si detecto 3 paredes posicion seria 0x7. Por ultimo, la funcion radar() nos retorna este valor de posicion, esto sera de gran importancia para el desarrollo de la función principal carro() en donde su principal papel sera servirnos como guia para el dibujo de la matriz.
+Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la variable *posición* nos dira que paredes estan ocupadas con la suma de estos valores dentro de los if que nos dicen si detecto pared. Es decir si detecto paredes a la izquierda y derecha significa que *posicion* tendria el valor de 0x5, si detecto 3 paredes *posicion* seria 0x7. Por ultimo, la funcion **radar()** nos retorna este valor de *posicion*, esto sera de gran importancia para el desarrollo de la función principal **carro()** en donde su principal papel sera servirnos como guia para el dibujo de la matriz.
 
-## :heavy_check_mark: enviarM();
-
+## :heavy_check_mark: enviarM()
+Se creo una función para que envie la matriz y llegue por bluetooth a un celular con la aplicación de "Bluetooth termianl HC-05" en esta se le envia cada posición de la matriz por medio de dos **for** que nos permitan ir por cada posicion de las filas y luego cambiar de fila al terminar. A partir de eso simplemente si el valor de la matriz es un 1 enviara por bluetooth una A, si es 2 una V y ses 3 una R haciendo referencia al color de la pared que observo a sus constados. Se finaliza el primer **for** con un salto de linea para que se observe el cambio de fila.
 
     for(int i = 0; i < 5; i++) { 	
             for(int j = 0; j < 6; j++) {
                 switch(matriz[j][i]){ 		/* azul=1, verde=2, rojo=3 */
-
- dwd
- 
-    case 1:
+                  case 1:
                     uart1_write(65);
                     delay_ms(10);
                     break;
@@ -146,9 +143,8 @@ Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la va
                     uart1_write(82);
                     delay_ms(10);
                     break;
-         
-dw
-
+                  }
+	  }	
          uart1_write(10);
 		delay_ms(10);
     	}
@@ -158,11 +154,24 @@ dw
 	delay_ms(10);
     
     
-## :heavy_check_mark:  avanzar();
+## :heavy_check_mark:  avanzar()
+DESPUES EXPLICO ESTO....
 
-## :heavy_check_mark: girarD();
 
-## :heavy_check_mark: girarI();
+## :heavy_check_mark: girarD() y girarI()
+Estas dos funciones se encargan del movimiento del robot, si gira hacia la izquierda o hacia la derecha. A contnuación solo mostraremos el codigo de **girarD()** ya que ambos codigos son similares. Podemos observar que se crean dos variables, la primera *tiempo* para decirle a los motores cuanto tiempo deben girar para poner el robot a 90° de su posición original y la segunda variable *estado* que le diga al modulo de **Motor** cuales motores debe girar y en que dirección. En este caso 0x3 significa que el motor de la izquierda gire hacia adelante y el de la derecha hacia atras para que haga el giro el robot, luego de hacer el giro detiene ambos motores con el estados 0x0, para el caso de **girarI()** el estado seria 0x4 para hacer el giro.
 
-## :heavy_check_mark:  carro();
+	unsigned int tiempo = 1000;
+		unsigned int estado = 0x0;
+		delay_ms(50);
+
+		estado = 0x3;
+		motor_cntrl_estado_write(estado);
+		delay_ms(tiempo);
+		estado = 0x0;
+		motor_cntrl_estado_write(estado);
+		delay_ms(50);
+
+## :heavy_check_mark:  carro()
+
 
