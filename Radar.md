@@ -4,7 +4,11 @@ El funcionamiento de este periférico se basa en que, por medio de un sensor de 
 Para el desarrollo de los drivers correspondientes a este periférico nos guiamos por el trabajo realizado por el Grupo 2 del semestre 2020-II ([Ultrasonido](https://github.com/unal-edigital2/w07_entrega-_final-grupo02/tree/main/Hardware/Modulos/ultrasonido)), en donde para determinar la distancia se utilizan principalmente dos módulos (*contador.v* y *genpulsos.v*) junto a otros módulos auxiliares que cumplen la función de divisores de frecuencia para hacer relojes o se encargan de que se cumpla la máquina de estados. 
 
 ### Módulo Contador (*contador.v*)
-Las funciones de este módulo son activar la generación del pulso que le indica al ultrasonido que debe inciar a operar, y calcular la distancia entre el ultrasonido y la pared midiendo el ancho de la señal *echo*, la cual es la salida del ultrasonido y proporcional a la distancia. Para que la proporción entre el ancho de la señal y la distancia sea 1 a 1 se utiliza un divisor de frecuencia para generar un reloj cuyos ciclos son equivalentes al tiempo que se demora la señal emitida por el ultrasonido en recorrer 1 cm. 
+Las funciones de este módulo son activar la generación del pulso que le indica al ultrasonido que debe inciar a operar, y calcular la distancia entre el ultrasonido y la pared midiendo el ancho de la señal *echo*, la cual es la salida del ultrasonido y proporcional a la distancia. Para que la proporción entre el ancho de la señal y la distancia sea 1 a 1 se utiliza un divisor de frecuencia para generar un reloj cuyos ciclos son equivalentes al tiempo que se demora la señal emitida por el ultrasonido en recorrer 1 cm. Los diagramas de bloques que representan el funcionamiento del módulo son los siguientes:
+![Screenshot](/Imagenes/Contador.PNG)
+![Screenshot](/Imagenes/PWM_ultra.PNG)
+
+El código utilizado para realizar este proceso es el siguiente:
 
       always@(posedge CLKOUT)
         begin
@@ -37,3 +41,6 @@ Las funciones de este módulo son activar la generación del pulso que le indica
         end
         assign count = count0;
 
+Podemos observar que la variable *count0* aumenta 1 por cada ciclo del reloj *CLKOUT* mientras que la señal de entrada *echo* se encuentra en 1, de tal forma cuando el pulso *echo* vuelve a tener valor de 0, se almacena en la variable *count* el valor de la distancia entre el ultrasonido y la pared más cercana. De igual forma la variable *calculate* toma valor de 1 cuando se termina de realizar el proceso de medición, actuando como un Done. 
+
+### Módulo Generador de Pulsos (*genpulsos.v*)
