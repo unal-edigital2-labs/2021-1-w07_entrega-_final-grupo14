@@ -1,9 +1,9 @@
 # Firmware  :man_technologist: 
 Para el desarrollo del firmware nos fijaremos en archivo main.c en el cual se encuentran las funciones del funcionamiento de nuestro robot. Estas seran explicadas a continuación teniendo en cuenta que primero creamos dos variables globales que entraran en varias funciones. El primero una matriz que nos servira de mapa según la trayectoria y lo que detecte nuestro robot, y la segunda un arreglo "color" de 3 posiciones que nos diga si detecto azul, verde o rojo.
-
+```C
     unsigned int matriz[6][5];
     unsigned int color[3];
-
+```
 
 ## :heavy_check_mark: infrarrojo()
   Para la función infrarrojo primero se crean dos variables, al primera para obtener el valor que nos da el periferico y la segunda como una salida de la función que se utilizara mas adelante dentro de otras funciones.
