@@ -1,7 +1,7 @@
 # Firmware  :man_technologist: 
 Para el desarrollo del firmware nos fijaremos en archivo main.c en el cual se encuentran las funciones del funcionamiento de nuestro robot. Estas seran explicadas a continuación teniendo en cuenta que primero creamos dos variables globales que entraran en varias funciones. El primero una matriz que nos servira de mapa según la trayectoria y lo que detecte nuestro robot, y la segunda un arreglo "color" de 3 posiciones que nos diga si detecto azul, verde o rojo.
 ```C
-    unsigned int matriz[6][5];
+    unsigned int matriz[6][7];
     unsigned int color[3];
 ```
 
@@ -31,8 +31,10 @@ A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones pa
     }
     return salida;
 ```
+
 ## :heavy_check_mark: sendInfo(CMD, p1, p2) y DFP_setup()
   Para la función sendInfo() se crean dos variables, la segunda que es un arreglo de 10 posiciones nos envia cada uno de los pares de bytes que necesita el DFP player para funcionar, esto se profundiza un poco mas dentro de la explicación del periferico. Esta función tiene 3 entradas con lo que se puede modificar el comando que se va a utilizar y los dos parametros, finalmente se envia este arreglo por medio de un for para ser transmitido por una uart al periferico.
+  
   ```C 
     unsigned int checksum = -(Version_Byte + Command_Length + CMD + Acknowledge + param1 + param2);
     unsigned int  Command_line[10] = { Start_Byte, Version_Byte, Command_Length, CMD, Acknowledge,
@@ -59,6 +61,36 @@ La función DFP_setup depende solamente de 3 llamados a la función sendInfo, en
  ```
 ## :heavy_check_mark: camara()
 Para la funcion de la camara se obtienen los valores que arroja el driver de la camara que son color, done y error. A partir de estos se genera una serie de if que nos dice si ya termino de tomar la imagen y no hay un error entra en unas condiciones según sea el valor que obtuvimos de la variable color. si es 001 significa que es azul, 010 verde, 100 rojo y 111 si no detecta la predominancia de alguno de estos colores. 
+
+```C
+        unsigned int col = 0;
+	unsigned int done = 0;
+	unsigned int error = 0;
+	
+	printf("Test de camara ... se interrumpe con el boton 1\n");
+
+		col = camara_cntrl_res_read(); 
+		done = camara_cntrl_done_read();
+		error = camara_cntrl_error_read();
+		if(done){
+			if(!error){
+				switch (col){
+	 				case 1: printf("Azul \n"); break;
+	 				case 2: printf("Verde \n"); break;
+	 				case 4: printf("Rojo \n"); break;
+	 				case 7: printf("Ninguno \n"); break;
+				}
+			}
+		}
+	camara_cntrl_init_write(1);
+	delay_ms(10);
+	camara_cntrl_init_write(0);
+	delay_ms(1000);
+	
+	return col;
+	
+    }
+```
 
 ## :heavy_check_mark: radar()
 Para la funcion radar se le introducen dos funciones que anteriormente mencionamos, sendInfo() y camara(). Primero creamos unas variables para poder tomas los valores de distacion que obtenemos del ultrasonido y a su vez la posición del motor paso a paso por el PWM.
@@ -132,40 +164,82 @@ Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la va
 ## :heavy_check_mark: enviarM()
 Se creo una función para que envie la matriz y llegue por bluetooth a un celular con la aplicación de "Bluetooth termianl HC-05" en esta se le envia cada posición de la matriz por medio de dos **for** que nos permitan ir por cada posicion de las filas y luego cambiar de fila al terminar. A partir de eso simplemente si el valor de la matriz es un 1 enviara por bluetooth una A, si es 2 una V y ses 3 una R haciendo referencia al color de la pared que observo a sus constados. Se finaliza el primer **for** con un salto de linea para que se observe el cambio de fila.
 ```C
-    for(int i = 0; i < 5; i++) { 	
-            for(int j = 0; j < 6; j++) {
-                switch(matriz[j][i]){ 		/* azul=1, verde=2, rojo=3 */
-                  case 1:
-                    uart1_write(65);
-                    delay_ms(10);
-                    break;
-                    case 2:
-                    uart1_write(86);
-                    delay_ms(10);
-                    break;
-                    case 3:
-                    uart1_write(82);
-                    delay_ms(10);
-                    break;
-                  }
-	  }	
-         uart1_write(10);
+    for(int i = 0; i < 6; i++) { 	
+		for(int j = 0; j < 7; j++) {
+			switch(matriz[i][j]){ 		//azul=1, verde=2, rojo=3
+				case 1:
+				uart1_write(65);
+				delay_ms(10);
+				break;
+				case 2:
+				uart1_write(86);
+				delay_ms(10);
+				break;
+				case 3:
+				uart1_write(82);
+				delay_ms(10);
+				break;
+				default:
+				uart1_write(matriz[i][j]);
+				delay_ms(10);
+				break;
+			}
+		}
+		
+		uart1_write(10);
 		delay_ms(10);
     	}
 	uart1_write(10);
 	delay_ms(10);
 	uart1_write(10);
 	delay_ms(10);
+}
   ```
     
 ## :heavy_check_mark:  avanzar()
-DESPUES EXPLICO ESTO....
+Para la función de **avanzar()** del robot se le asigna un valor a la variable estado que nos dira como deben girar los motores al igual que la variable infras, este ultimo tomara su valor según lo que se obtenga del periferico y de la función **infrarrojo()**. A partir de lo anterior si la función de los infrarrojos se obtiene un valor diferente de 3 (que significa que todos los sensores observaron cinta negra) se entrara a un while en donde usara todo el tiempo la función de infrarrojos para saber su valor, luego se activaran los motores modificando el valor de la variable *estado* para que el carro avance de frente. Finalmente cuando los infrarrojos detecten una cinta negra en todos sus sensores, el carro se detendra.
+
+ ```C
+        unsigned int estado = 0x0;
+	unsigned int infra = 0;
+	delay_ms(50);
+	
+	while(infra!=3){
+	infra = infrarrojo();
+		
+		switch (infra){
+			 case 0:
+			      estado = 0x2;
+			      motor_cntrl_estado_write(estado);
+				delay_ms(50);
+			      break;
+			 case 2:
+			      estado = 0x4;
+			      motor_cntrl_estado_write(estado);
+				delay_ms(50);
+			      break;
+			 case 1:
+			      estado = 0x3;
+			      motor_cntrl_estado_write(estado);
+				delay_ms(50);
+			      break;
+			  default:
+			      estado = 0x0;
+			      motor_cntrl_estado_write(estado);
+				delay_ms(50);
+			      break;
+      		}
+	}
+ 
+ ```
+
+
 
 
 ## :heavy_check_mark: girarD() y girarI()
 Estas dos funciones se encargan del movimiento del robot, si gira hacia la izquierda o hacia la derecha. A contnuación solo mostraremos el codigo de **girarD()** ya que ambos codigos son similares. Podemos observar que se crean dos variables, la primera *tiempo* para decirle a los motores cuanto tiempo deben girar para poner el robot a 90° de su posición original y la segunda variable *estado* que le diga al modulo de **Motor** cuales motores debe girar y en que dirección. En este caso 0x3 significa que el motor de la izquierda gire hacia adelante y el de la derecha hacia atras para que haga el giro el robot, luego de hacer el giro detiene ambos motores con el estados 0x0, para el caso de **girarI()** el estado seria 0x4 para hacer el giro.
 ```C
-	unsigned int tiempo = 1000;
+	unsigned int tiempo = 900;
 		unsigned int estado = 0x0;
 		delay_ms(50);
 
@@ -177,50 +251,68 @@ Estas dos funciones se encargan del movimiento del robot, si gira hacia la izqui
 		delay_ms(50);
 ```
 ## :heavy_check_mark:  carro()
-Ahora mostraremos nuestra función principal, la cual se encarga de que el robot pueda andar por el laberinto, identificar las paredes con su color y rellenar la matriz, para esto primero se crean diferentes variable spara luego hacer el llamado de las funciones, se le asigna una posicion inicial al robot en la matriz y se le asiga un valor a *dir* que hace referencia a la dirección, es decir que toma un valor diferente si mirahacia el norte, sur, este u oeste. 
+Ahora mostraremos nuestra función principal, la cual se encarga de que el robot pueda andar por el laberinto, identificar las paredes con su color y rellenar la matriz, para esto primero se crean diferentes variable spara luego hacer el llamado de las funciones, se le asigna una posicion inicial al robot en la matriz y se le asiga un valor a *dir* que hace referencia a la dirección, es decir que toma un valor diferente si mira hacia el norte, este u oeste. 
 ```C
-        unsigned int radar1;
+        unsigned int radar1=0x5;
 	unsigned int posX=3;
 	unsigned int posY=5;
 	unsigned int dir=0; /* 0 arriba, 1 derecha, 2 abajo*/
  ```       
-Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al DFP paleyer mini, luego se crea un rellena la matriz del mapa con 0 a partir de dos funciones *for*. Despues de esto se usa la función **sendInfo()** para reproducir un audio y dar inicio al recorrido del robot.
+Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al DFP paleyer mini, luego se rellena la matriz del mapa con "80" que en ASCII es una P, a partir de dos funciones *for*. Despues de esto se usa la función **sendInfo()** para reproducir un audio y dar inicio al recorrido del robot.
 
  ```C	
 	DFP_setup(); /* Se establecen los valores del DFP*/
 	for(int i = 0; i < 6; i++) { 		/* Rellenar la matriz de 0 */
 		for(int j = 0; j < 5; j++) {
-		matriz[i][j] = 0;
+		matriz[i][j] = 80;
 		}
     	}
         sendInfo(0x03,0x00,0x02);
         delay_ms(2000);
         sendInfo(0x16,0x00,0x00);
- ``` 	
-El proceso de recorrido comienza con un while que comienza gracias a oprimir un boton, luego se ejecuta radar y el infrarrojo para comenzar el recorrido, luego se usa lo que retorno la función **radar()** que anteriormente conocimos como *posicion* hasta que vea las 3 paredes ocupadas saldra de un while, El robot seguira en ese while hasta que llegue al final de laberinto.
+``` 	
+
+El proceso de recorrido comienza con el carro avanzando al primer cuadrante, luego se ejecuta un while comparando si el valor de radar es diferente a 0x7 que significa que observo todas las paredes ocupadas, al entrar dentro del while ejecutara todo el tiempo la función **radar()** y comparara su valor hasta que llegue al final de laberinto.
 
 ```C	
-	while(!(buttons_in_read()&1)) {
-		
+	 avanzar();
+	 delay_ms(2000);
+        
+	 while(radar1!=0x7){
 		radar1 = radar();
-		infras = infrarrojo();
-		delay_ms(2000);
+```	
 
-		while(radar1!=0x7){
-		   radar1 = radar();
-```		   
-Depues volvemos a ejecutar radar, segun su retorno entraremos en un switch en donde tendremos 3 casos, 0x5 si los lados estan ocupados y alfrente libre, 0x3 cuando la izquierda y al frente estan ocupados mientras que la derecha esta libre, y 0x6 derecha y frente ocupados mientras que la izquierda esta libre. A partir de esto entra en una serie de *if* cada uno haciendo comparaciones si ambas paredes ocupadas son de un color. Como esta en la sección de codigo que se muestra a continuación compara si el arreglo color para la derecha y la izquierda poseen el valor de 1, es decir si son azules, luego de esto observa que direccion posee el robot y a partir de eso cambia los valores de la matriz según donde se encuentre la decir que que paredes vio y con que color. Por ultimo mueve la posición en X o Y para actualizar su posición ya que se ejecuto la función **avanzar()**
+A partir de lo que toma el valor de la función **radar()**  se entra en un switch en donde tendremos 3 casos, 0x5 si los lados estan ocupados y alfrente libre, 0x3 cuando la izquierda y al frente estan ocupados mientras que la derecha esta libre, y 0x6 derecha y frente ocupados mientras que la izquierda esta libre. A partir de esto entra en un *if* para saber la dirección que posee el robot. Ahora se tomara el arreglo de *color[]* y se le asiganara a la matriz los valores a las paredes el color que halla observado la camara dentro de la funcíon **radar()**. A su vez, le dara un valor de "43" que en ASCII es un "+" a la posición donde se encuentre el robot y por donde haya pasado. Actualiza su posición y avanza a la siguiente posición.
+
 
 ```C
-	  switch (radar1){
-              case 0x5:
-                if(color[2]==1 && color[0]==1){ /* lados ocupado, frente vacio, A A*/
-			      avanzar();
-			      delay_ms(1000);
-			        if(dir==0){
-				      matriz[posY][posX-1]=1; 	  
-				      matriz[posY][posX+1]=1;
-				      posY-=1;
-			        }
+	 switch (radar1){
+			
+			// Lados ocupado, frente vacio
+            		case 0x5:
+			     
+					if(dir==0){
+					      matriz[posY][posX-1]=color[0]; 	  
+					      matriz[posY][posX+1]=color[2];
+					      matriz[posY][posX]=43;
+					      matriz[posY-1][posX]=43;
+					      matriz[posY-2][posX]=43;
+					      posY-=2;
+					}		 	     
+					if(dir==1){
+					      matriz[posY+1][posX]=color[0];
+					      matriz[posY-1][posX]=color[2];
+					      matriz[posY][posX]=43;
+					      matriz[posY][posX-1]=43;
+					      matriz[posY][posX-2]=43;
+					      posX-=2;
+					}	
+                			
+				
+					
+				avanzar();
+			      	delay_ms(2000);
+			      	enviarM();	
+            		break;
 ```
 Esto mismo pasa con los demas casos que toma el radar con su retorno de *posicion* y segun con que dirección se encuentre el robot, al final de cada uno de estos *case* se usa la función **enviarM()** para que el usuario obserbe que a visto el robot dentro del laberinto.  :ok_hand: :robot:
