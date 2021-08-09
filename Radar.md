@@ -71,5 +71,5 @@ El código utilizado para realizar este proceso es el siguiente:
                               end
                         end
                   end
-El reloj *CLKOUT1* tiene periodo de 10 microsegundos, por lo tanto cuando la señal de entrada *pulse* tiene valor alto, en el primer ciclo del reloj las señales *Doit* y *NoDoit* tendran un valor distinto y por ende la señal de salida *trigg* sera alta durante este periodo, pero en el siguiente ciclo del reloj las señales seran iguales y la señal *trigg* tendra valor bajo, generando de tal forma un pulso de 10 microsegundos que corresponde a la entrada del ultrasonido.  
+El reloj *CLKOUT1* tiene período de 10 microsegundos, por lo tanto cuando la señal de entrada *pulse* tiene valor alto, en el primer ciclo del reloj las señales *Doit* y *NoDoit* tendran un valor distinto y por ende la señal de salida *trigg* sera alta durante este período, pero en el siguiente ciclo del reloj las señales seran iguales y la señal *trigg* tendra valor bajo, generando de tal forma un pulso de 10 microsegundos que corresponde a la entrada del ultrasonido.  
 
