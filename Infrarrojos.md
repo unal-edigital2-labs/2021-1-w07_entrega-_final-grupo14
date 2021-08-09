@@ -1,6 +1,7 @@
 # Infrarrojo :footprints:
 El periferico de los sensores seguidores de linea que funcionan a partir de infrarrojos, el que se uso dentro del proyecto posee 5 sensores como se puede ver en la siguiente imagen.
 
+![Screenshot](/Imagenes/GPIOir.jpg)
 
 Este periferico se uso a partir de un GPIO es decir que cada uno de estos sensores posee un solo pin de entrada y de salida, cabe destacar que este periferico ademas de las 5 conexiones con el GPIO posee otros dos pines los cuales son de alimentacion GND y el otro debe ser alimentado con 5V que obtenemos del arduino.
 
