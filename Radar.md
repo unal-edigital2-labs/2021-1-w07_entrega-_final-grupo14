@@ -12,6 +12,7 @@ Las funciones de este módulo son activar la generación del pulso que le indica
 
 El código utilizado para realizar este proceso es el siguiente:
 
+```V
       always@(posedge CLKOUT)
         begin
           logico=(count0[7]||count0[6]||count0[5]||count0[4]||count0[3]||count0[2]||count0[1]||count0[0]);
@@ -42,6 +43,7 @@ El código utilizado para realizar este proceso es el siguiente:
           end
         end
         assign count = count0;
+```
 
 Podemos observar que la variable *count0* aumenta 1 por cada ciclo del reloj *CLKOUT* mientras que la señal de entrada *echo* se encuentra en 1, de tal forma cuando el pulso *echo* vuelve a tener valor de 0, se almacena en la variable *count* el valor de la distancia entre el ultrasonido y la pared más cercana. De igual forma la variable *calculate* toma valor de 1 cuando se termina de realizar el proceso de medición, actuando como un Done. 
 
