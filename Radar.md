@@ -55,6 +55,7 @@ La función de este módulo es crear una señal PWM de ancho de 10 microsegundos
 
 El código utilizado para realizar este proceso es el siguiente:
 
+```verilog
             assign trigg=(Doit && ~NoDoit);
             always@(posedge CLKOUT1)
                   begin
@@ -75,6 +76,8 @@ El código utilizado para realizar este proceso es el siguiente:
                               end
                         end
                   end
+ ```
+                 
 El reloj *CLKOUT1* tiene período de 10 microsegundos, por lo tanto cuando la señal de entrada *pulse* tiene valor alto, en el primer ciclo del reloj las señales *Doit* y *NoDoit* tendran un valor distinto y por ende la señal de salida *trigg* sera alta durante este período, pero en el siguiente ciclo del reloj las señales seran iguales y la señal *trigg* tendra valor bajo, generando de tal forma un pulso de 10 microsegundos que corresponde a la entrada del ultrasonido.  
 
 ## Servomotor (*pwm.v*)
@@ -85,6 +88,7 @@ El driver de este periférico corresponde a un simple módulo PWM, ya que el des
 
 El código utilizado para realizar este módulo es el siguiente:
 
+```verilog
       reg[27:0] counter=28'd0;
       reg[15:0] limite;
       reg[15:0] activo;
@@ -102,5 +106,7 @@ El código utilizado para realizar este módulo es el siguiente:
               pwm <=0;
 
       end
+ ```
+ 
 El funcionamiento del código se basa en que se define un contador que aumenta con cada ciclo del reloj, y cuando el valor del contador es menor que la señal de entrada *dutty* correspondiente al ciclo útil, la señal de salida *pwm* tiene valor alto mientras que si el contador es mayor al ciclo útil la señal de salida se torna a valor bajo, y en el momento que el contador tiene el mismo valor que la señal de entrada *period*, este se reinicia repitiendo el proceso descrito anteriormente. 
 
