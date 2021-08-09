@@ -1,5 +1,5 @@
 # Radar 📡
-El funcionamiento de este periférico se basa en que, por medio de un sensor de ultrasonido HC-SR04, se mide la distancia a la pared del laberinto que se encuentre apuntando el sensor, y usando un motor paso a paso se varía la dirección en la cual apunta el ultrasonido con el fin de obtener las distancias existentes entre el robot y las paredes que se encuentran a su derecha, su izquierda y el frente, y de tal forma determinar las posiciones donde se encuentran las paredes del laberinto para que el robot pueda mapearlas posteriormente y de igual tomar la decisión sobre hacia que dirección debe avanzar.
+El funcionamiento de este periférico se basa en que, por medio de un sensor de ultrasonido HC-SR04, se mide la distancia a la pared del laberinto que se encuentre apuntando el sensor, y usando un servomotor se varía la dirección en la cual apunta el ultrasonido con el fin de obtener las distancias existentes entre el robot y las paredes que se encuentran a su derecha, su izquierda y el frente, y de tal forma determinar las posiciones donde se encuentran las paredes del laberinto para que el robot pueda mapearlas posteriormente y de igual tomar la decisión sobre hacia que dirección debe avanzar.
 
 ## Ultrasonido
 
@@ -75,5 +75,30 @@ El código utilizado para realizar este proceso es el siguiente:
                   end
 El reloj *CLKOUT1* tiene período de 10 microsegundos, por lo tanto cuando la señal de entrada *pulse* tiene valor alto, en el primer ciclo del reloj las señales *Doit* y *NoDoit* tendran un valor distinto y por ende la señal de salida *trigg* sera alta durante este período, pero en el siguiente ciclo del reloj las señales seran iguales y la señal *trigg* tendra valor bajo, generando de tal forma un pulso de 10 microsegundos que corresponde a la entrada del ultrasonido.  
 
-## Motor paso a paso
+## Servomotor (*pwm.v*)
+
+El driver de este periférico corresponde a un simple módulo PWM, ya que el desplazamiento angular del servomotor se define por el ciclo útil de una señal PWM con período de 20 milisegundos. El diagrama de bloques que define el funcionamiento del módulo es el siguiente: 
+
+![Screenshot](/Imagenes/pwm.PNG)
+
+El código utilizado para realizar este módulo es el siguiente:
+
+      reg[27:0] counter=28'd0;
+      reg[15:0] limite;
+      reg[15:0] activo;
+
+      always @(posedge clk) begin
+
+      counter <= counter + 28'd1;
+
+           if(counter>=(period-1))
+              counter <= 28'd0;
+
+           if(counter <= dutty)
+              pwm <= 1;
+              else
+              pwm <=0;
+
+      end
+El funcionamiento del código se basa en que se define un contador que aumenta con cada ciclo del reloj, y cuando el valor del contador es menor que la señal de entrada *dutty* correspondiente al ciclo útil, la señal de salida *pwm* tiene valor alto mientras que si el contador es mayor al ciclo útil la señal de salida se torna a valor bajo, y en el momento que el contador tiene el mismo valor que la señal de entrada *period*, este se reinicia repitiendo el proceso descrito anteriormente. 
 
