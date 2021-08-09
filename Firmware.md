@@ -1,4 +1,4 @@
-# Firmware  :man_technologist:
+# Firmware  :man_technologist: :shipit:
 Para el desarrollo del firmware nos fijaremos en archivo main.c en el cual se encuentran las funciones del funcionamiento de nuestro robot. Estas seran explicadas a continuación teniendo en cuenta que primero creamos dos variables globales que entraran en varias funciones. El primero una matriz que nos servira de mapa según la trayectoria y lo que detecte nuestro robot, y la segunda un arreglo "color" de 3 posiciones que nos diga si detecto azul, verde o rojo.
 
     unsigned int matriz[6][5];
@@ -81,7 +81,9 @@ Primero declaramos el funcionamiento cuando el radar esta mirando hacia la izqui
     ultra_cntrl_orden_write(orden);
     delay_ms(100);
     distancia = 2*ultra_cntrl_d_read(); /* Se obtiene el valor de la distancia al objeto*/
-Este valor de distacia lo comparamos con una distancia limite que nosotros proponemos, es decir un valor maximo para decir si detecto una pared o no. Luego llamamos a la funcion camara, esta detectara la imagen y guardara el color que obtuvo, al valor de posición se le sumo 0x1 esto se explicara a profundidad mas adelante pero la idea es que esta observando a la izquierda. Pasamos a un switch el cual  encontramos diferentes casos segun el color que obtuvimos por la camara. segun el color detectado se le da un valor al arreglo color, la posicion color[0] es cuando el radar esta observanod la derecha, color[1] cuando el radar obserba al frente y color[2] cuando ve a la derecha. segun esto se le asigna 1 si es azul, 2 
+Este valor de distacia lo comparamos con una distancia limite que nosotros proponemos, es decir un valor maximo para decir si detecto una pared o no. Luego a l valor de posición se le sumo 0x1 esto se explicara a profundidad mas adelante pero la idea es que esta observando a la izquierda. LLamamos a la funcion camara, esta detectara la imagen y pasamos a un switch el cual encontramos diferentes casos segun el color que obtuvimos por la camara. segun el color detectado se le da un valor al arreglo color, la posicion color[0] es cuando el radar esta observando la izquierda, color[1] cuando el radar obserba al frente y color[2] cuando ve a la derecha. según esto se le asigna 1 si es azul, 2 si es verde y 3 si es rojo.
+
+Despues de hacer la asigancion al arreglo color se reproducen los respectivos audios para saber que color detecto, y depues de 2000 milisegundos (2 segundos) se vuelve a usar la funcion sendInfo pero con el comando de parar con el fin de que el audio que se esta reproduciendo no entre en un bucle. Por ultimo en caso de que la distacia detectada a la pared sea mas grande de lo establecido saldra del if, le sumara al avslor de posición 0x0 y el valor de ornde sera 0 para que el ultrasonido detenga su proceso.
 
     if (distancia<limite_distancia){
         cam=camara();
@@ -112,6 +114,16 @@ Este valor de distacia lo comparamos con una distancia limite que nosotros propo
       delay_ms(100);
       orden = 0;
       ultra_cntrl_orden_write(orden);
+ 
+A contnuacion explicaremos el funcionamiento de la variable "posicion"  para esto como se observa en la siguiente tabla se encuentra los 3 casos segun a donde este mirando el radar.
+
+| Posición | Binario | Hexadecimal |
+| ------------- | ------------- | ------------- |
+| Izquierda | 001 |  0x1 |
+| Frente | 010 |  0x2 |
+| Derecha | 100 |  0x4  |
+      
+Si el robot detecto dos paredes al mirar a sus lados con el radar entonces la variable posición nos dira que paredes estan ocupadas con la suma de estos valores dentro de los if que nos dicen si detecto pared. Es decir si detecto paredes a la izquierda y derecha significa que posicion tendria el valor de 0x5, si detecto 3 paredes posicion seria 0x7. Esto sera de gran importancia para el desarrollo de la función principal carro() en donde su principla papel sera servirnos como guia para el dibujo de la matriz.
 
 ## :heavy_check_mark: enviarM();
 
