@@ -218,4 +218,4 @@ Depues volvemos a ejecutar radar, segun su retorno entraremos en un switch en do
 				      posY-=1;
 			        }
 
-Esto mismo pasa con los demas casos que toma el radar con su retorno de *posicion* y segun con que dirección se encuentre el robot, al final de cada uno de estos *case* se usa la función **enviarM()** para que el usuario obserbe que a visto el robot dentro del laberinto.
+Esto mismo pasa con los demas casos que toma el radar con su retorno de *posicion* y segun con que dirección se encuentre el robot, al final de cada uno de estos *case* se usa la función **enviarM()** para que el usuario obserbe que a visto el robot dentro del laberinto.  :ok_hand: :robot:
