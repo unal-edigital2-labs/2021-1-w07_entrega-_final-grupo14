@@ -75,3 +75,12 @@ always @(posedge pclk)begin
 	vsync_old = vsync;
 end
 ```
+Para entender el funcionamiento del código hay que tener en cuenta la forma como la cámara envía la información, en la siguiente imagen se describe este proceso.
+
+![Screenshot](/Imagenes/camara4.PNG)
+
+El primer flanco de la señal *vsync* indica que la transmisión de datos va a iniciar y el segundo indica que la transmisión ha concluido, mientras que la señal *href* indica cuando se está transmitiendo la información de una línea de pixeles. Teniendo en cuenta esto, en el código podemos observar que por cada ciclo del reloj de la cámara *pclk* se revisa inicialmente si la señal de entrada *init* tuvo un flanco de subida para que se de inicio al proceso de captura de datos. Posteriormente a esto se revisa si la señal *vsync* tuvo su primer flanco de bajada, lo cual significa que la cámara dará inicio a la transmisión de datos. Mientras la cámara se encuentre transmiendo datos, es decír que la variable *start* sea igual a 2, se verifica si la señal *href* tiene valor alto para llevar a cabo el proceso de downsampling  revisando siempre si los datos corresponden al primer o al segundo byte del pixel por medio de la variable *countData* y llevando la cuenta de los pixels convertidos en la variable *count*. Finalmente se revisa si la señal *vsync* ya tuvo su segundo flanco de subida, indicando que la transmisión de datos ha concluido, para reiniciar las variables y por medio de la salida *done* señalar que el proceso de captura de datos ha finalizado.   
+
+
+
+
