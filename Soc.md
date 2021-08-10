@@ -1,1 +1,1 @@
-# SoC :brain:
+# SoC :robot:
