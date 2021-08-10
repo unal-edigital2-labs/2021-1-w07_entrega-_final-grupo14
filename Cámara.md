@@ -85,9 +85,13 @@ Mientras la cámara se encuentre transmiendo datos, es decír que la variable *s
 
 ## Procesamiento de imágenes (Analyzer.v)
 
-Este módulo se encarga de analizar las imagenes obtenidas de la captura de datos y determinar el color predominante en la imagen realizando el conteo de los pixeles predominantes de cada color en la imagen y finalmente haciendo una comparación entre los valores obtenidos. El código utilizado para llevar a cabo este proceso es el siguiente: 
+Este módulo se encarga de analizar las imagenes obtenidas de la captura de datos y determinar el color predominante en la imagen realizando el conteo de la intensidad de cada color en la imagen y finalmente haciendo una comparación entre los valores obtenidos. El código utilizado para llevar a cabo este proceso es el siguiente: 
 
 ```verilog
+assign dataR = data[7:5];
+assign dataG = data[4:2];
+assign dataB = {data[2:0],1'b0};
+
 always @(posedge clk)begin
 		if(init && !init_old)begin
 			start <= 1;
@@ -127,5 +131,7 @@ always @(posedge clk)begin
 	init_old = init;
 end
 ```
+Como se puede observar, inicialmente el byte de información del pixel en formato RGB332 se descompone entre las variables *dataR*, *dataB* y *dataG* almacenando en cada variable el valor de intensidad en el pixel correspondiente a su color. Posteriormente se almacena en las variables *sumaR*, *sumaG* y *sumaB* el acumulado obtenido de todos los pixeles de la imagen para finalmente realizar la comparación e indicar en la señal de salida *res* cual es el color predominante en la imagen.  
+
 
 
