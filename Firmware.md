@@ -316,3 +316,32 @@ A partir de lo que toma el valor de la función **radar()**  se entra en un swit
             		break;
 ```
 Esto mismo pasa con los demas casos que toma el radar con su retorno de *posicion* y segun con que dirección se encuentre el robot, al final de cada uno de estos *case* se usa la función **enviarM()** para que el usuario obserbe que a visto el robot dentro del laberinto.  :ok_hand: :robot:
+
+
+## :heavy_check_mark: main()
+
+Por ultimo mostramos la función **main()** en donde se usa un while el cual siempre se ejecuta, a partir de la aplicacion de celular con la que conectamos por bluetooth al robot le enviamos una letra para que haga una función, es decir si queremos que el robot inicie el recorrido de laberinto con la función **carro()** simplemente se escribe un "s" por la aplicación y el robot comenzara su camino.
+```C
+      while(1) {
+	        func = uart3_read();
+	        if(func == 112)
+	        pwm_test();
+	        if(func == 'i')
+	        girarI();
+	        if(func == 'd')
+	        girarD();
+	        if(func == 'l')
+	        DFP_test();
+	        if(func == 'a')
+	        avanzar();
+	        if(func == 'r')
+	        radar_test();
+	        if(func == 'c')
+	        camara_test();
+	        if(func == 's')
+	        carro();
+	        
+	        delay_ms(10);
+	}
+
+```
