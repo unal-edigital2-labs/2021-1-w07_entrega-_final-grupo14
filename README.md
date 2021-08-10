@@ -12,7 +12,7 @@ Los periféricos que se utilizaron en el proyecto, para complementar al procesad
 
 A continuación haremos una breve explicación del Soc, el firmware y los perfiféricos integrados al Soc junto a sus respectivos links en donde se puede observar su funcionamiento más en detalle.
 
-## [SoC](w07_entrega-_final-grupo14/Camara.md ) :brain:
+## [SoC](w07_entrega-_final-grupo14/Camara.md ) :robot:
 
 En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishbone y los diferentes módulos de los periféricos que componen el robot. 
 
