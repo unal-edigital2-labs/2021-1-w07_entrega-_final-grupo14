@@ -79,8 +79,53 @@ Para entender el funcionamiento del código hay que tener en cuenta la forma com
 
 ![Screenshot](/Imagenes/camara4.PNG)
 
-El primer flanco de la señal *vsync* indica que la transmisión de datos va a iniciar y el segundo indica que la transmisión ha concluido, mientras que la señal *href* indica cuando se está transmitiendo la información de una línea de pixeles. Teniendo en cuenta esto, en el código podemos observar que por cada ciclo del reloj de la cámara *pclk* se revisa inicialmente si la señal de entrada *init* tuvo un flanco de subida para que se de inicio al proceso de captura de datos. Posteriormente a esto se revisa si la señal *vsync* tuvo su primer flanco de bajada, lo cual significa que la cámara dará inicio a la transmisión de datos. Mientras la cámara se encuentre transmiendo datos, es decír que la variable *start* sea igual a 2, se verifica si la señal *href* tiene valor alto para llevar a cabo el proceso de downsampling  revisando siempre si los datos corresponden al primer o al segundo byte del pixel por medio de la variable *countData* y llevando la cuenta de los pixels convertidos en la variable *count*. Finalmente se revisa si la señal *vsync* ya tuvo su segundo flanco de subida, indicando que la transmisión de datos ha concluido, para reiniciar las variables y por medio de la salida *done* señalar que el proceso de captura de datos ha finalizado.   
+El primer flanco de la señal *vsync* indica que la transmisión de datos va a iniciar y el segundo indica que la transmisión ha concluido, mientras que la señal *href* indica cuando se está transmitiendo la información de una línea de pixeles. Teniendo en cuenta esto, en el código podemos observar que por cada ciclo del reloj de la cámara *pclk* se revisa inicialmente si la señal de entrada *init* tuvo un flanco de subida para que se de inicio al proceso de captura de datos. Posteriormente a esto se revisa si la señal *vsync* tuvo su primer flanco de bajada, lo cual significa que la cámara dará inicio a la transmisión de datos. 
 
+Mientras la cámara se encuentre transmiendo datos, es decír que la variable *start* sea igual a 2, se verifica si la señal *href* tiene valor alto para llevar a cabo el proceso de downsampling  revisando siempre si los datos corresponden al primer o al segundo byte del pixel por medio de la variable *countData* y llevando la cuenta de los pixels convertidos en la variable *count*. Finalmente se revisa si la señal *vsync* ya tuvo su segundo flanco de subida, indicando que la transmisión de datos ha concluido, para reiniciar las variables y por medio de la salida *done* señalar que el proceso de captura de datos ha finalizado.   
 
+## Procesamiento de imágenes (Analyzer.v)
+
+Este módulo se encarga de analizar las imagenes obtenidas de la captura de datos y determinar el color predominante en la imagen realizando el conteo de los pixeles predominantes de cada color en la imagen y finalmente haciendo una comparación entre los valores obtenidos. El código utilizado para llevar a cabo este proceso es el siguiente: 
+
+```verilog
+always @(posedge clk)begin
+		if(init && !init_old)begin
+			start <= 1;
+			done <= 0;
+			sumaR <= 0;
+			sumaG <= 0;
+			sumaB <= 0;
+		end
+	if(start)begin
+		if(count >= 19200)begin
+			start <= 0;
+			count <= 0;
+			addr <= 15'h7fff;
+			done <= 1;
+			if((sumaR > sumaG) && (sumaR > sumaB))begin
+				res = 3'b100;
+			end else begin
+				if((sumaG > sumaR) && (sumaG > sumaB))begin
+				res = 3'b010;
+				end else begin
+					if((sumaB > sumaR) && (sumaB > sumaG))begin
+						res = 3'b001;
+					end else begin
+						res =3'b111; //No hay ninguno mayor
+					end
+				end
+			end
+		end else begin
+			addr <= addr+1;
+			count <= count+1;
+			sumaR <= #1 sumaR+dataR;
+			sumaG <= #1 sumaG+dataG;
+			sumaB <= #1 sumaB+dataB;
+			done <= 0;
+		end
+	end 
+	init_old = init;
+end
+```
 
 
