@@ -35,3 +35,5 @@ En los siguientes enlaces se encuentran los videos correspondientes a las prueba
 
 
 ### Problemas Presentados
+Durante la realización del proyecto se presentaron diversos problemas, los más significativos fueron los siguientes:
+- **Detección de colores:** Despues de realizar distintas pruebas al módulo de la cámara encargado de analizar las imágenes capturadas, notamos que se presentaban problemas al momento de detectar los colores ya que en algunas ocasiones no se detectaba el color correcto, esto se puede evidenciar en los videos de prueba de funcionamiento del robot cartógrafo en donde el robot detecta el color erroneo en algunas paredes del laberinto. Este problema se debe a que, por las limitaciones de la cámara utilizada, cuando la iluminación del ambiente no es ideal la captura de datos es erronea y la activación de los pixeles RGB no se da de forma correcta.  
