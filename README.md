@@ -20,7 +20,7 @@ En este enlace se describe la arquitectura del robot cartógrafo y el proceso qu
 Dentro del enlace de firmware se encuentra la información del código usado para el desarrollo del funcionamiento del robot cartógrafo, de igual forma se puede observar la explicación de las funciones que se encuentran dentro del archivo *main.c*.
 
 ## Periféricos :electric_plug:
-Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, cada uno de estos links mostraran el módulo en verilog y su archivo .py respectivo, a su vez se hace una explicación detallada del código utilizado para el funcionamiento del módulo de cada periférico.
+Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, cada uno de estos links mostraran el módulo en verilog y a su vez se hace una explicación detallada del código utilizado para el funcionamiento del módulo de cada periférico.
 - [Cámara](/Soc_project/module/verilog/camara/)
 - [Radar](/Soc_project/module/verilog/ultrasonido/)
 - [Motores](/Soc_project/module/verilog/motor/)
