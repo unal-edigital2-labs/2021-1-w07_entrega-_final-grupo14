@@ -13,7 +13,7 @@ EL proyecto del robot cartografo se basa en que hace la creación de un SoC (sys
             o_infras2 = self.infras2.status,
         )
  ```
-El codigo de arriba hace referencia al codigo usado para la implementacion del periferico de los infrarrojos (**infrarrojo.py**). Dentro de este podemos observar que se inicializan las pines de entrada del modulo **infrarrojos.v** luego se le asigna la cantidad de pines que este usa por esta entrada o salida y por ultimo se hace la instancia.
+El codigo de arriba hace referencia al codigo usado para la implementacion del periferico de los infrarrojos (**infrarrojo.py**). Dentro de este podemos observar que se inicializan las pines de entrada del modulo **infrarrojos.v** luego se le asigna la cantidad de bits que posee esta entrada o salida, y por ultimo se hace la instancia.
 
 ```python
     #infrarrojo
