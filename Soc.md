@@ -13,7 +13,7 @@ EL proyecto del robot cartografo se basa en que hace la creación de un SoC (sys
             o_infras2 = self.infras2.status,
         )
  ```
-El codigo de arriba hace referencia al codigo usado para la implementacion del periferico de los infrarrojos (**infrarrojo.py**). Dentro de este podemos observar que se inicializan las pines de entrada del modulo **infrarrojos.v** luego se le asigna la cantidad de bits que posee esta entrada o salida, y por ultimo se hace la instancia.
+El codigo de arriba hace referencia al codigo usado para la implementacion del periferico de los infrarrojos (**infrarrojo.py**). Dentro de este podemos observar que se inicializan las pines de entrada del modulo **infrarrojos.v** luego para crear los registros de memoria se usan dos función, la primera es CSRStatus() para registros de solo lectura cuyo argumento es el número de bits que usará, en este caso **infras2** son los pines de lectura y son 5. Para las señales de lectura y escritura se usaremos la función CSRStorage() y por ultimo se hace la instanciación de nuestro modulo de verilog teniendo en cuenta los pines usados con sus espacios de memoria.
 
 ```python
     #infrarrojo
