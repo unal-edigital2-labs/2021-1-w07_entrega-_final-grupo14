@@ -27,14 +27,15 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 - [Infrarrojos](/Soc_project/module/verilog/infrarrojo/)
 - [DFP player mini y Bluetooth](/Arduino_Code_Cam_config/)
 
-## Pruebas de Funcionamiento 
+## Pruebas de Funcionamiento :clapper:
 
 En los siguientes enlaces se encuentran los videos correspondientes a las pruebas de funcionamiento realizadas al robot cartógrafo, en ellos se puede observar al robot recorriendo el laberinto de forma autónoma a medida que reconoce los colores de las paredes. De igual forma, se observa simultaneamente la impresión del mapeo realizado por el robot que se envía a un celular por medio de bluetooth.
 - [Video 1](https://www.youtube.com/watch?v=-sIw7MB7exA)
 - [Video 2](https://www.youtube.com/watch?v=XjEla83Jrmw)
 
 
-### Problemas Presentados
+### Problemas Presentados :shipit: :warning:
+
 Durante la realización del proyecto se presentaron diversos problemas, los más significativos fueron los siguientes:
 - **Detección de colores:** Despues de realizar distintas pruebas al módulo de la cámara encargado de analizar las imágenes capturadas, notamos que se presentaban problemas al momento de detectar los colores ya que en algunas ocasiones no se detectaba el color correcto, esto se puede evidenciar en los videos de prueba de funcionamiento del robot cartógrafo en donde el robot detecta el color erroneo en algunas paredes del laberinto. Este problema se debe a que, por las limitaciones de la cámara utilizada, cuando la iluminación del ambiente no es ideal la captura de datos es erronea y la activación de los pixeles RGB no se da de forma correcta. 
 - **Módulo Bluetooth:** Se nos presento otro inconveniente al tratar de implementar el módulo bluetooth HC-05 con un periferico UART generado en la FPGA, a pesar de que se tuvo en cuenta los baudios a los que trabajaba el dispositivo (9600), no pudimos lograr que mediante de la FPGA pudieramos enviar datos por bluetooth. Debido a ello, decidimos realizar la implementación de la comunicación bluetooth con uno de los seriales que presta el Arduino Mega 2560 (tanto para recepción como para envóo de información).
