@@ -2,9 +2,9 @@
 
 ```python
     #infrarrojo
-		SoCCore.add_csr(self,"infra_cntrl")
-		infras_in = Cat(*[platform.request("infras", i) for i in range(5)])
-		self.submodules.infra_cntrl = infrarrojo.Infrarrojo(infras_in)
+    SoCCore.add_csr(self,"infra_cntrl")
+    infras_in = Cat(*[platform.request("infras", i) for i in range(5)])
+    self.submodules.infra_cntrl = infrarrojo.Infrarrojo(infras_in)
 ```    
     
 ```python
