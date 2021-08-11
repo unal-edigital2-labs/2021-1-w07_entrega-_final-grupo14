@@ -1,8 +1,9 @@
 # SoC :robot:
+EL proyecto del robot cartografo se basa en que hace la creación de un SoC (system of Chip). Dentro de los archivos dados en clase contamos que usaremos un procesador picoRV32 y por medio de un bus de comunicación Wishbone que permitira la comunicacion del procesador,la memoria y los perifericos que se usaran a lo largo del proyecto. Para lograr nuestro objetivo contamos con Litex como una herramienta que nos permita crear el hardware del procesador sobre la FPGA, ademas nos contruye ciertos perifericos que vienen con el procesador al igual que la conexion con el bus de datos wishbone. Por lo tanto para poder integrar nuestro perifericos se crearon modulos en lenguaje de Verilog, a partir de esto debemos crear un modulo para poder comunicarnos con litex y de esta manera agregar el periferico al SoC 
 
 
-Este proyecto pasa por la creación de un SoC (System On Chip) que integra gran variedad de cosas de acuerdo a nuestras necesidades. En nuestro caso, hacemos uso de un procesador de AMD y por medio de buses de comunicación lo conectamos con memorias, registros y módulos hechos en el lenguaje Verilog que corresponden a los implementos necesarios para formar un robot cartógrafo que es capaz de recorrer cierta variedad de laberintos de manera autónoma. El proceso para realizar un SoC se realizó con el uso de una herramienta de código abierto llamada Litex, la cual nos permite ensamblar de una manera sencilla todos los módulos separados de FPGA que podamos llegar a tener (claro, sin exceder las capacidades de la tarjeta). En esta sección, veremos cómo es el proceso para lograr esta integración.
 
+microprocesador picoRV32, el bus de datos Wishbone
 
 
 Litex sirve para construir hardware, nos da el procesador y contruye hw sobre la FPGa, ademas nos contruye ciertos perifericos que vienen con el procesador y la conexion con el punte wishbone y admeas a integrar los modulos en v por medio de py
