@@ -22,10 +22,13 @@ EL proyecto del robot cartografo se basa en que hace la creación de un SoC (sys
             i_ECHO=self.ECHO,
         )
  ```
-El codigo de arriba hace referencia al codigo usado para la implementacion del periferico de los infrarrojos (**infrarrojo.py**). Dentro de este podemos observar que se inicializan las pines de entrada del modulo **infrarrojos.v** luego para crear los registros de memoria se usan dos función, la primera es CSRStatus() para registros de solo lectura cuyo argumento es el número de bits que usará, en este caso **infras2** son los pines de lectura y son 5. Para las señales de lectura y escritura se usaremos la función CSRStorage() y por ultimo se hace la instanciación de nuestro modulo de verilog teniendo en cuenta los pines usados con sus espacios de memoria.
+El codigo de arriba hace referencia al codigo usado para la implementacion del periferico del ultrasonido (**ultrasonido.py**). Dentro de este podemos observar que se inicializan los pines de entrada del modulo **ultrasonido.v** luego para crear los registros de memoria se usan dos función, la primera es CSRStatus() para registros de solo lectura cuyo argumento es el número de bits que usará, en este caso **"d"** son los pines de lectura y son 8 para obtener la distancia. Para las señales de lectura y escritura se usaran la función CSRStorage() como vemos es el caso de **"orden"** y por ultimo se hace la instanciación de nuestro modulo de verilog teniendo en cuenta los pines usados con sus espacios de memoria.
 
 ```python
     #ultrasonido
-		SoCCore.add_csr(self,"ultra_cntrl")
-		self.submodules.ultra_cntrl = ultrasonido.Ultra(platform.request("trigg"),platform.request("ECHO"))
+    SoCCore.add_csr(self,"ultra_cntrl")
+    self.submodules.ultra_cntrl = ultrasonido.Ultra(platform.request("trigg"),platform.request("ECHO"))
 ```    
+ Luego pasamos al archivo buildSocproject.py  dentro de este creamos las anteriores lineas de codigo en donde la primera se crea el espacio de memoria para el ultra sonido, luego en la segunda linea de codigo se relacionan los pines fisicos con la clase Ultra creada anteiormente dentro del archivo .py para que se realcionen con el modulo en verilog. lUego de esto solo basta compilar este archivo para que se guarden los cambios y la conexion entre el periferico y el SoC.
+ 
+ 
