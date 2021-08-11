@@ -27,4 +27,10 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 - [Infrarrojos](/Soc_project/module/verilog/infrarrojo/)
 - [DFP player mini y Bluetooth](/Arduino_Code_Cam_config/)
 
+## Pruebas de Funcionamiento 
+
+En los siguientes enlaces se encuentran los videos correspondientes a las pruebas de funcionamiento realizadas al robot cartógrafo, en ellos se puede observar al robot recorriendo el laberinto de forma autónoma a medida que reconoce los colores de las paredes. De igual forma, se observa simultaneamente la impresión del mapeo realizado por el robot que se envía a un celular por medio de bluetooth.
+- [Video 1](https://www.youtube.com/watch?v=-sIw7MB7exA)
+- [Video 2](https://www.youtube.com/watch?v=XjEla83Jrmw)
+
 
