@@ -21,10 +21,10 @@ Dentro del enlace de firmware se encuentra la información del código usado par
 
 ## Periféricos :electric_plug:
 Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, cada uno de estos links mostraran el módulo en verilog y su archivo .py respectivo, a su vez se hace una explicación detallada del código utilizado para el funcionamiento del módulo de cada periférico.
-- [Cámara](/Soc_project/module/verilog/camara/ )
-- [Radar](/Soc_project/module/verilog/ultrasonido/ )
+- [Cámara](/Soc_project/module/verilog/camara/)
+- [Radar](/Soc_project/module/verilog/ultrasonido/)
 - [Motores](/Soc_project/module/verilog/motor/)
-- [Infrarrojos](/Soc_project/module/verilog/infrarrojo/ )
+- [Infrarrojos](/Soc_project/module/verilog/infrarrojo/)
 - [DFP player mini y Bluetooth](/Arduino_Code_Cam_config/)
 
 
