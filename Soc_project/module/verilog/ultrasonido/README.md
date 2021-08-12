@@ -49,7 +49,7 @@ Podemos observar que la variable *count0* aumenta 1 por cada ciclo del reloj *CL
 
 ### Módulo Generador de Pulsos (*genpulsos.v*)
 
-La función de este módulo es crear una señal PWM de ancho de 10 microsegundos en alto cuando el módulo *contador.v* se lo indica. Esta señal corresponde a el *trigg* del ultrasonido, por lo tanto despues de recibir esta señal este empieza a operar y emite las ondas que se reflejan en las parades del laberinto con el fin de medir la distancia. El diagrama de bloque que representa el funcionamiento del módulo es el siguiente:
+La función de este módulo es crear una señal PWM de ancho de 10 microsegundos en alto cuando el módulo *contador.v* se lo indica. Esta señal corresponde a el *trigg* del ultrasonido, por lo tanto despues de recibir esta señal este empieza a operar y emite las ondas que se reflejan en las paredes del laberinto con el fin de medir la distancia. El diagrama de bloque que representa el funcionamiento del módulo es el siguiente:
 
 ![Screenshot](/Imagenes/PWM_ultra.PNG)
 
