@@ -5,7 +5,7 @@ Se uso un dispositivo Bluetooth de referencia HC-05, este posee 4 pines, dos de 
 ![Screenshot](/Imagenes/bluetooth.jpg)
 
 ## DFP player mini :sound:
-Como se menciono anteriormente para la comunicación con este periferico se usao otra Uart, La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
+Como se menciono anteriormente para la comunicación con este periferico se usa otra Uart, La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
 
 ![Screenshot](/Imagenes/DFP1.jpg)
 
