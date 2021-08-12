@@ -122,34 +122,39 @@ Este valor de distacia lo comparamos con una distancia limite que nosotros propo
 Despues de hacer la asigancion al arreglo color se reproducen los respectivos audios para saber que color detecto, y depues de 2000 milisegundos (2 segundos) se vuelve a usar la funcion **sendInfo()** pero con el comando de parar con el fin de que el audio que se esta reproduciendo no entre en un bucle. Por ultimo en caso de que la distacia detectada a la pared sea mas grande de lo establecido saldra del *if*, le sumara al valor de *posicion* 0x0 y el valor de ornde sera 0 para que el ultrasonido detenga su proceso.
 ```C
     if (distancia<limite_distancia){
-        cam=camara();
-        posicion += 0x1; 
-        switch(cam){
-          case 1: 
-            color[0]=1;
-            sendInfo(0x03,0x00,0x04);
-                  delay_ms(2000);
-                  sendInfo(0x16,0x00,0x00);
-            break; 
-          case 2: 
-                    color[0]=2;
-            sendInfo(0x03,0x00,0x03);
-                  delay_ms(2000);
-                  sendInfo(0x16,0x00,0x00);
-            break;
-          case 4: 
-            color[0]=3;
-            sendInfo(0x03,0x00,0x05);
-                  delay_ms(2000);
-                  sendInfo(0x16,0x00,0x00);
-            break;
-        }
-      } else {
-        posicion+=0x0;
-      }
-      delay_ms(100);
-      orden = 0;
-      ultra_cntrl_orden_write(orden);
+		delay_ms(1000);
+		for(int i=0; i<7; i++)
+		cam=camara();	
+        	posicion += 0x1; 
+		switch(cam){
+			case 1: 
+				color[0]=1;
+				sendInfo(0x16,0x00,0x00);
+				sendInfo(0x03,0x00,0x04);
+			        delay_ms(2000);
+				break; 
+			case 2: 
+                		color[0]=2;
+				sendInfo(0x16,0x00,0x00);
+				sendInfo(0x03,0x00,0x03);
+			        delay_ms(2000);
+			        
+				break;
+			case 4: 
+				color[0]=3;
+				sendInfo(0x16,0x00,0x00);
+				sendInfo(0x03,0x00,0x05);
+			        delay_ms(2000);
+			        
+				break;
+		}
+	} else {
+		posicion+=0x0;
+	}
+	delay_ms(100);
+	orden = 0;
+	ultra_cntrl_orden_write(orden);
+
  ```
 A contnuacion explicaremos el funcionamiento de la variable *posicion* para esto como se observa en la siguiente tabla se encuentra los 3 casos segun a donde este mirando el radar.
 
