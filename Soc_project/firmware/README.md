@@ -33,7 +33,7 @@ A partir de lo que obtenemos de la entrada hacemos una serie de comparaciones pa
 ```
 
 ## :heavy_check_mark: sendInfo(CMD, p1, p2) y DFP_setup()
-  Para la función sendInfo() se crean dos variables, la segunda que es un arreglo de 10 posiciones nos envia cada uno de los pares de bytes que necesita el DFP player para funcionar, esto se profundiza un poco mas dentro de la explicación del periferico. Esta función tiene 3 entradas con lo que se puede modificar el comando que se va a utilizar y los dos parametros, finalmente se envia este arreglo por medio de un for para ser transmitido por una uart al periferico.
+  Para la función sendInfo() se crean dos variables, la segunda que es un arreglo de 10 posiciones nos envia cada uno de bytes que necesita el DFP player para funcionar, esto se profundiza un poco mas dentro de la explicación del periferico. Esta función tiene 3 entradas con lo que se puede modificar el comando que se va a utilizar y los dos parametros, finalmente se envia este arreglo por medio de un for para ser transmitido por una uart al periferico.
   
   ```C 
     unsigned int checksum = -(Version_Byte + Command_Length + CMD + Acknowledge + param1 + param2);
