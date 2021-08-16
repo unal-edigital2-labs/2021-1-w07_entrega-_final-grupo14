@@ -20,3 +20,6 @@ De esta manera para usar dar ordenes al DFP player se uso una función llamada *
 Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion de 5v con un arduino, los pines RX y TX como se menciono anteriormente irian conectados a la FPGa para la comunicacion con la Uart y el manejo del periferico, el pin GND como la tierra y por ultimo el DFP player posee un espacio para almacenar una memoria SD la cual posee los audios utilizados en el proyecto. Estos audios son nombrados como 0001, 0002... Esto dado que al ingresar el *parm2* dentro de la orden del DFP player pueda encontrar y reproducir el audio.
 
 ![Screenshot](/Imagenes/DFP2.jpg)
+
+## Mapa de memoria
+![Screenshot](/Imagenes/mem_uart13.PNG)
