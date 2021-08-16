@@ -31,4 +31,4 @@ Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que 
       
 El funcionamiento del módulo se basa en que según el valor de la señal de entrada *estado* se establecen los valores de los 4 pines de salida siguiendo la tabla descrita anteriormente para que los motores realicen la acción deseada. 
 
-![Screenshot](/Imagenes/puenteH.png)
+![Screenshot](/Imagenes/punteH.png)
