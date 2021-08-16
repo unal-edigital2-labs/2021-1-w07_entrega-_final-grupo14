@@ -9,7 +9,9 @@ Para el desarrollo de los drivers correspondientes a este periférico nos guiamo
 
 Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
 
-![Screenshot](/Imagenes/mem_ultra.PNG)
+<p align="center">
+<![Screenshot](/Imagenes/mem_ultra.PNG)>
+</p>
 
 A continuación se hace la descripción del funcionamiento de los módulos principales correspondientes al ultrasonido.
 
@@ -96,7 +98,9 @@ El driver de este periférico corresponde a un simple módulo PWM, ya que el des
 
 Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
 
-![Screenshot](/Imagenes/mem_servo.PNG)
+<p align="center">
+<![Screenshot](/Imagenes/mem_servo.PNG)>
+</p>
 
 El diagrama de bloques que describe el funcionamiento del módulo es el siguiente: 
 
