@@ -9,7 +9,15 @@ Se utilizaron dos motores y un puente H (L298N) para el movimiento del robot car
 | Giro Izquierda | 0 | 1 | 0 | 1 |
 | Pausa | 0 | 0 | 0 | 0 |
 
-Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que cumple la función de driver para los motores. El código utilizado es el siguiente:
+Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que cumple la función de driver para los motores. El diagrama que describe las conexiones de este driver con el periférico es el siguiente:
+
+![Screenshot](/Imagenes/punteH.png)
+
+Y la ubicación del registro en el mapa de memoria es:
+
+![Screenshot](/Imagenes/mem_motor.PNG)
+
+El código utilizado para la realización del módulo es el siguiente:
 
 ```verilog
     parameter AVANCE=2, RETROCESO=1, PAUSA=0, GIROD=3, GIROI=4;
@@ -30,5 +38,3 @@ Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que 
   ```
       
 El funcionamiento del módulo se basa en que según el valor de la señal de entrada *estado* se establecen los valores de los 4 pines de salida siguiendo la tabla descrita anteriormente para que los motores realicen la acción deseada. 
-
-![Screenshot](/Imagenes/punteH.png)
