@@ -2,6 +2,6 @@
 
 
 
-![Screenshot](/Imagenes/bluetooth.jpg)
+![Screenshot](/Imagenes/Bluetooth.png)
 
-![Screenshot](/Imagenes/bluetooth.jpg)
+![Screenshot](/Imagenes/Arduino.png)
