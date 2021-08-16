@@ -24,7 +24,13 @@ Se establecen los valores de los registros de la cámara por medio del protocolo
      OV7670_write(0x40,0xD0);      //COM15: Set RGB 565
      OV7670_write(0x8C,0x00);
 ```
-De igual forma tambien se establecen una serie de registros, que se denominaron "Registros magicos", con el fin de que la imagen obtenida por la cámara sea de mejor calidad.
+De igual forma tambien se establecen una serie de registros, que se denominaron "Registros magicos", con el fin de que la imagen obtenida por la cámara nos permita visualizar bien los colores del entorno.
+
+## Pruebas de imagen
+
+Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, ademas de la correspondiente configuracion de los registros en Arduino, nos percatamos de distintos escenarios favorables y desfavorables en los cuales se podria encontrar nuestra camara al momento de las respectivas pruebas con el Robot cartografo.
+
+###Hola
 
 
 
