@@ -32,6 +32,7 @@ Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, adema
 
 
 ![Screenshot](/Imagenes/20210815_153806.jpg)
+<img src="/Imagenes/20210815_153806.jpg" width="48">
 
 ### Prueba 1: Sin luz
 
