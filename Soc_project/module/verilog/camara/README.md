@@ -1,5 +1,13 @@
 # Cámara 📸
-Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers nos guiamos en el trabajo realizado por el Grupo 5 del semestre 2019-II ([Cámara](https://github.com/unal-edigital1-2019-2/work04-proyectofinal-grupo-05-1)). El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
+Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers nos guiamos en el trabajo realizado por el Grupo 5 del semestre 2019-II ([Cámara](https://github.com/unal-edigital1-2019-2/work04-proyectofinal-grupo-05-1)). 
+
+
+## Pruebas con la VGA
+![Screenshot](/Imagenes/camara2.png)
+
+
+
+El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
 
 ![Screenshot](/Imagenes/camara1.png)
 
@@ -130,9 +138,6 @@ always @(posedge clk)begin
 end
 ```
 Como se puede observar, inicialmente el byte de información del pixel en formato RGB332 se descompone entre las variables *dataR*, *dataB* y *dataG* almacenando en cada variable el valor de intensidad en el pixel correspondiente a su color. Posteriormente se almacena en las variables *sumaR*, *sumaG* y *sumaB* el acumulado obtenido de todos los pixeles de la imagen para finalmente realizar la comparación e indicar en la señal de salida *res* cual es el color predominante en la imagen.  
-
-## Pruebas con la VGA
-![Screenshot](/Imagenes/camara2.png)
 
 
 
