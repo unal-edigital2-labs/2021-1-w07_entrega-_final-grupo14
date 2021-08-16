@@ -3,7 +3,7 @@ EL proyecto del robot cartógrafo se basa en la creación de un SoC (System of C
 
 ![Screenshot](/Imagenes/Soc.png)
 
-Por lo tanto para poder integrar los periféricos se crearon módulos en Verilog junto a unos módulos en lenguaje de Python para poder comunicarse con litex y de esta manera agregar el periferico al SoC. El código utilizado para realizar este proceso es el siguiente: 
+Por lo tanto para poder integrar los periféricos se crearon módulos en Verilog junto a unos módulos en lenguaje de Python para poder comunicarse con litex y de esta manera agregar el periferico al SoC. Un ejemplo del código utilizado para realizar este proceso es el siguiente: 
 
 ```python
     class Ultra(Module,AutoCSR):
