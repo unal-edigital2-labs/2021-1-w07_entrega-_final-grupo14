@@ -4,9 +4,9 @@ Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers 
 
 # Pruebas de imagen y configuración de la camara
 
-Las pruebas de imagen se desarrollaron mediante un driver de VGA en verilog (VGA_driver.v) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos, almacenamiento, y generacion de clk's. Como se puede ver:
+Las pruebas de imagen se desarrollaron mediante un proyecto implementado en verilog, en donde el modulo top (test_cam.v) se encargaba de coordinar un driver de VGA (VGA_driver.v) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos (cam_read.v), almacenamiento (buffer_ram_dp.v), y generacion de clk's (clk24_25nexys4.v). Como se puede ver:
  ![Screenshot](/Imagenes/camara2.png)
- 
+ Por otro lado tambien era necesario realizar la configuracion de los registros de la camara por medio de I2C, de donde nos servimos de un arduino para llevar a cabo dicho procedimiento.
 
 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
@@ -25,6 +25,7 @@ Se establecen los valores de los registros de la cámara por medio del protocolo
      OV7670_write(0x8C,0x00);
 ```
 De igual forma tambien se establecen una serie de registros, que se denominaron "Registros magicos", con el fin de que la imagen obtenida por la cámara sea de mejor calidad.
+
 
 
 # Integración camara con el procesador
