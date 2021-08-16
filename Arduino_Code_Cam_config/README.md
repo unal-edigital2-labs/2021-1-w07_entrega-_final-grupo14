@@ -1,7 +1,6 @@
 # DFP player mini :sound:
-Como se menciono anteriormente para la comunicación con este periferico se usa otra Uart, La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
+ La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
 
-![Screenshot](/Imagenes/DFP.png)
 
 | Byte | Descripción |
 | ------------- | ------------- |
@@ -21,5 +20,9 @@ Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion d
 
 ![Screenshot](/Imagenes/DFP2.jpg)
 
-## Mapa de memoria
+En la siguiente imagen se puede observar la conexión con el DFP palyer mini, esta conectado a partir de una uart2 creada en el **buildSoCproject.py** De esta manera tambien se crea su mapa de memoria gracias a litex.
+
+
+![Screenshot](/Imagenes/DFP.png)
+
 ![Screenshot](/Imagenes/mem_uart2.PNG)
