@@ -9,5 +9,7 @@ A continuacion observamos un diagrama con la conexión del arduino con los modul
 ![Screenshot](/Imagenes/Bluetooth.png)
 
 Por ultimo observamos el mapa de memoria creado en el archivo **Soc_MemoryMap.csv** para las uarts.
-![Screenshot](/Imagenes/mem_uart13.PNG)
+<p align="center">
+  <img src="/Imagenes/mem_uart13.PNG" align="center">
+</p>
 
