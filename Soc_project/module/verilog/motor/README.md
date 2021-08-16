@@ -15,7 +15,10 @@ Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que 
 
 Y la ubicación del registro en el mapa de memoria es:
 
-![Screenshot](/Imagenes/mem_motor.PNG)
+<p align="center">
+  <img src="/Imagenes/mem_motor.PNG" align="center">
+</p>
+
 
 El código utilizado para la realización del módulo es el siguiente:
 
