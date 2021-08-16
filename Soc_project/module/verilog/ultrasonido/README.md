@@ -10,15 +10,19 @@ Para el desarrollo de los drivers correspondientes a este periférico nos guiamo
 Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
 
 <p align="center">
-<![Screenshot](/Imagenes/mem_ultra.PNG)>
+  <img src="/Imagenes/mem_ultra.PNG" align="center">
 </p>
+
 
 A continuación se hace la descripción del funcionamiento de los módulos principales correspondientes al ultrasonido.
 
 ### Módulo Contador (*contador.v*)
 Las funciones de este módulo son activar la generación del pulso que le indica al ultrasonido que debe iniciar a operar, y calcular la distancia entre el ultrasonido y la pared midiendo el ancho de la señal *echo*, la cual es la salida del ultrasonido y proporcional a la distancia. Para que la proporción entre el ancho de la señal y la distancia sea 1 a 1 se utiliza un divisor de frecuencia para generar un reloj cuyos ciclos son equivalentes al tiempo que se demora la señal emitida por el ultrasonido en recorrer 1 cm. El diagrama de bloque que representa el funcionamiento del módulo es el siguiente:
 
-![Screenshot](/Imagenes/Contador.PNG)
+<p align="center">
+  <img src="/Imagenes/Contador.PNG" align="center">
+</p>
+
 
 El código utilizado para realizar este proceso es el siguiente:
 
@@ -61,7 +65,10 @@ Podemos observar que la variable *count0* aumenta 1 por cada ciclo del reloj *CL
 
 La función de este módulo es crear una señal PWM de ancho de 10 microsegundos en alto cuando el módulo *contador.v* se lo indica. Esta señal corresponde a el *trigg* del ultrasonido, por lo tanto despues de recibir esta señal este empieza a operar y emite las ondas que se reflejan en las paredes del laberinto con el fin de medir la distancia. El diagrama de bloque que representa el funcionamiento del módulo es el siguiente:
 
-![Screenshot](/Imagenes/PWM_ultra.PNG)
+<p align="center">
+  <img src="/Imagenes/PWM_ultra.PNG" align="center">
+</p>
+
 
 El código utilizado para realizar este proceso es el siguiente:
 
@@ -99,12 +106,16 @@ El driver de este periférico corresponde a un simple módulo PWM, ya que el des
 Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
 
 <p align="center">
-<![Screenshot](/Imagenes/mem_servo.PNG)>
+  <img src="/Imagenes/mem_servo.PNG" align="center">
 </p>
+
 
 El diagrama de bloques que describe el funcionamiento del módulo es el siguiente: 
 
-![Screenshot](/Imagenes/pwm.PNG)
+<p align="center">
+  <img src="/Imagenes/pwm.PNG" align="center">
+</p>
+
 
 El código utilizado para realizar este módulo es el siguiente:
 
