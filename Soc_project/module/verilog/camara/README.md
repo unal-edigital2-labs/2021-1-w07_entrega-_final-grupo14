@@ -23,8 +23,6 @@ De igual forma tambien se establecen una serie de registros, que se denominaron 
 ## Captura de datos (*cam_read.v*)
 En este módulo se realiza la captura de datos de la cámara y se envían a la memoria RAM, además de realizar la conversión del formato RGB565 a RGB332. El diagrama de bloques que describe el proceso es el siguiente:
 
-![Screenshot](/Imagenes/camara2.PNG)
-
 La conversión del formato RGB se lleva a cabo por medio de un proceso denominado downsampling, y se basa en reducir el tamaño de la información seleccionando los datos más significativos, despues de este proceso es posible almacenar la información de un pixel en un byte a diferencia del formato RGB565 en donde se utilizaban dos bytes por pixel.
 
 ![Screenshot](/Imagenes/camara3.PNG)
@@ -132,6 +130,10 @@ always @(posedge clk)begin
 end
 ```
 Como se puede observar, inicialmente el byte de información del pixel en formato RGB332 se descompone entre las variables *dataR*, *dataB* y *dataG* almacenando en cada variable el valor de intensidad en el pixel correspondiente a su color. Posteriormente se almacena en las variables *sumaR*, *sumaG* y *sumaB* el acumulado obtenido de todos los pixeles de la imagen para finalmente realizar la comparación e indicar en la señal de salida *res* cual es el color predominante en la imagen.  
+
+## Pruebas con la VGA
+![Screenshot](/Imagenes/camara2.png)
+
 
 
 
