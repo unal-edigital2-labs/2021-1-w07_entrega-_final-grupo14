@@ -37,11 +37,14 @@ Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, adema
 
 ### Prueba 1: Sin luz
 
+Sin luz la paleta de colores es ligeramente visible para la camara, impidiendo el analisis para colores como verde y azul.
 <p align="center">
   <img src="/Imagenes/20210815_153323.jpg" align="center" width="480">
 </p>
 
 ### Prueba 2: Poca luz
+
+Al encender un led blanco instalado en el robot cartografo,la relfexion que provoca este sobre la paleta de colores permite que se puedan distinguir mas los colores azul y verde.
 
 <p align="center">
   <img src="/Imagenes/20210815_153356.jpg" align="center" width="480">
@@ -49,15 +52,20 @@ Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, adema
 
 ### Prueba 3: Con luz
 
+Esta prueba se realizo con lamparas de luz, siendo la situacion ideal para la cual la camara realiza una captura de datos correcta. Sin embargo cabe aclarar que son condiciones que cambian dependiendo de la luz ambiente. 
+
 <p align="center">
   <img src="/Imagenes/20210815_153440.jpg" align="center" width="480">
 </p>
 
 ### Prueba 4: Mucha luz
 
+Al acercarle la lampara a la camara, se distorsiona la imagen hasta el punto de realizar una captura de datos erronea, este caso nos impide reconocer claramente los colores de la paleta, y debe ser evitado.
+
 <p align="center">
   <img src="/Imagenes/20210816_153254_capture.jpg" align="center" width="480">
 </p>
+
 
 # Integración camara con el procesador
 El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
