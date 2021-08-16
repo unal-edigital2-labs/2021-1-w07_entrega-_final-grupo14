@@ -2,14 +2,9 @@
 Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers nos guiamos en el trabajo realizado por el Grupo 5 del semestre 2019-II ([Cámara](https://github.com/unal-edigital1-2019-2/work04-proyectofinal-grupo-05-1)). 
 
 
-## Pruebas con la VGA
+# Pruebas de imagen y configuracion de la camara
 ![Screenshot](/Imagenes/camara2.png)
 
-
-
-El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
-
-![Screenshot](/Imagenes/camara1.png)
 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
 Se establecen los valores de los registros de la cámara por medio del protocolo de comunicación serial I2C, se utilizo un microcontrolador Arduino para llevar a cabo este proceso y se describe en el archivo *Camara_OV.ino*. El código con el cual se establecen los registros y el formato de la cámara es el siguiente:
@@ -27,6 +22,13 @@ Se establecen los valores de los registros de la cámara por medio del protocolo
      OV7670_write(0x8C,0x00);
 ```
 De igual forma tambien se establecen una serie de registros, que se denominaron "Registros magicos", con el fin de que la imagen obtenida por la cámara sea de mejor calidad.
+
+
+# Integración camara con el procesador
+El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
+
+![Screenshot](/Imagenes/camara1.png)
+
 
 ## Captura de datos (*cam_read.v*)
 En este módulo se realiza la captura de datos de la cámara y se envían a la memoria RAM, además de realizar la conversión del formato RGB565 a RGB332. El diagrama de bloques que describe el proceso es el siguiente:
