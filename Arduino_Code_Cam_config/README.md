@@ -1,7 +1,7 @@
 # DFP player mini :sound:
 Como se menciono anteriormente para la comunicación con este periferico se usa otra Uart, La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
 
-![Screenshot](/Imagenes/DFP1.jpg)
+![Screenshot](/Imagenes/DFP.png)
 
 | Byte | Descripción |
 | ------------- | ------------- |
