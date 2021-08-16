@@ -18,7 +18,9 @@ De esta manera para usar dar ordenes al DFP player se uso una función llamada *
 
 Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion de 5v con un arduino, los pines RX y TX como se menciono anteriormente irian conectados a la FPGa para la comunicacion con la Uart y el manejo del periferico, el pin GND como la tierra y por ultimo el DFP player posee un espacio para almacenar una memoria SD la cual posee los audios utilizados en el proyecto. Estos audios son nombrados como 0001, 0002... Esto dado que al ingresar el *parm2* dentro de la orden del DFP player pueda encontrar y reproducir el audio.
 
-![Screenshot](/Imagenes/DFP2.jpg)
+<p align="center">
+  <img src="/Imagenes/DFP2.jpg" align="center">
+</p>
 
 En la siguiente imagen se puede observar la conexión con el DFP palyer mini, esta conectado a partir de un modulo **uart2.py** por los pines Rx y Tx, y a su vez esta uart2 fue creada en el **buildSoCproject.py** creando las conexiones y espacios de memoria gracias a la herramienta de Litex.
 
@@ -26,4 +28,7 @@ En la siguiente imagen se puede observar la conexión con el DFP palyer mini, es
 
 En esta imagen podemos observar el espacio de memoria creado para la uart2 con los pines de lectura-escritura y de solo lectura.
 
-![Screenshot](/Imagenes/mem_uart2.PNG)
+<p align="center">
+  <img src="/Imagenes/mem_uart2.PNG" align="center">
+</p>
+
