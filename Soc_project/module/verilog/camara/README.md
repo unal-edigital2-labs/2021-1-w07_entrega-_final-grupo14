@@ -69,12 +69,12 @@ Al acercarle la lampara a la camara, se distorsiona la imagen hasta el punto de 
 En conclusion, se necesitan condiciones idoneas para que la camara pueda capturar los datos correspondientes a los diferentes colores que se colocaran en el laberinto. Por lo contrario, se generan errores al momento de realizar el analisis posterior de estos datos.
 
 # Integración camara con el procesador
-El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
+El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama, en donde se hace la integracion de los modulos en verilog mencionados anteriormente y el modulo en python [camara.py](/Soc_project/module/camara.py):
 
 ![Screenshot](/Imagenes/camara1.png)
 
 
-## Captura de datos (*cam_read.v*)
+## Captura de datos ([cam_read.v](/Soc_project/module/verilog/camara/cam_read.v))
 En este módulo se realiza la captura de datos de la cámara y se envían a la memoria RAM, además de realizar la conversión del formato RGB565 a RGB332. El diagrama de bloques que describe el proceso es el siguiente:
 
 La conversión del formato RGB se lleva a cabo por medio de un proceso denominado downsampling, y se basa en reducir el tamaño de la información seleccionando los datos más significativos, despues de este proceso es posible almacenar la información de un pixel en un byte a diferencia del formato RGB565 en donde se utilizaban dos bytes por pixel.
@@ -135,7 +135,7 @@ El primer flanco de la señal **vsync** indica que la transmisión de datos va a
 
 Mientras la cámara se encuentre transmiendo datos, es decír que la variable **start** sea igual a 2, se verifica si la señal **href** tiene valor alto para llevar a cabo el proceso de downsampling  revisando siempre si los datos corresponden al primer o al segundo byte del pixel por medio de la variable **countData** y llevando la cuenta de los pixels convertidos en la variable **count**. Finalmente se revisa si la señal **vsync** ya tuvo su segundo flanco de subida, indicando que la transmisión de datos ha concluido, para reiniciar las variables y por medio de la salida **done** señalar que el proceso de captura de datos ha finalizado.   
 
-## Procesamiento de imágenes (Analyzer.v)
+## Procesamiento de imágenes ([Analyzer.v](/Soc_project/module/verilog/camara/Analyzer.v))
 
 Este módulo se encarga de analizar las imagenes obtenidas de la captura de datos y determinar el color predominante en la imagen realizando el conteo de la intensidad de cada color en la imagen y finalmente haciendo una comparación entre los valores obtenidos. El código utilizado para llevar a cabo este proceso es el siguiente: 
 
