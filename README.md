@@ -12,6 +12,10 @@ Los periféricos que se utilizaron en el proyecto, para complementar al procesad
 
 ![Screenshot](/Imagenes/Diagrama.png)
 
+El mapa de memoria se encuentra detalladamente en el archivo *Soc_MemoryMap.csv*, las bases correspondientes para cada driver del SoC son las siguientes:
+
+![Screenshot](/Imagenes/mem_bases.PNG)
+
 A continuación haremos una breve explicación del Soc, el firmware y los perfiféricos integrados al Soc junto a sus respectivos links en donde se puede observar su funcionamiento más en detalle.
 
 ## [SoC](/Soc_project/) :robot:
