@@ -24,4 +24,6 @@ En la siguiente imagen se puede observar la conexión con el DFP palyer mini, es
 
 ![Screenshot](/Imagenes/DFP.png)
 
+En esta imagen podemos observar el espacio de memoria creado para la uart2 con los pines de lectura-escritura y de solo lectura.
+
 ![Screenshot](/Imagenes/mem_uart2.PNG)
