@@ -3,7 +3,15 @@ El funcionamiento de este periférico se basa en que, por medio de un sensor de 
 
 ## Ultrasonido
 
-Para el desarrollo de los drivers correspondientes a este periférico nos guiamos por el trabajo realizado por el Grupo 2 del semestre 2020-II ([Ultrasonido](https://github.com/unal-edigital2/w07_entrega-_final-grupo02/tree/main/Hardware/Modulos/ultrasonido)), en donde para determinar la distancia se utilizan principalmente dos módulos (*contador.v* y *genpulsos.v*) junto a otros módulos auxiliares que cumplen la función de divisores de frecuencia para hacer relojes o se encargan de que se cumpla la máquina de estados. 
+Para el desarrollo de los drivers correspondientes a este periférico nos guiamos por el trabajo realizado por el Grupo 2 del semestre 2020-II ([Ultrasonido](https://github.com/unal-edigital2/w07_entrega-_final-grupo02/tree/main/Hardware/Modulos/ultrasonido)), en donde para determinar la distancia se utilizan principalmente dos módulos (*contador.v* y *genpulsos.v*) junto a otros módulos auxiliares que cumplen la función de divisores de frecuencia para hacer relojes o se encargan de que se cumpla la máquina de estados. El diagrama que describe la conexión entre los drivers de este periférico es el siguiente:
+
+![Screenshot](/Imagenes/ultra.png)
+
+Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
+
+![Screenshot](/Imagenes/mem_ultra.PNG)
+
+A continuación se hace la descripción del funcionamiento de los módulos principales correspondientes al ultrasonido.
 
 ### Módulo Contador (*contador.v*)
 Las funciones de este módulo son activar la generación del pulso que le indica al ultrasonido que debe iniciar a operar, y calcular la distancia entre el ultrasonido y la pared midiendo el ancho de la señal *echo*, la cual es la salida del ultrasonido y proporcional a la distancia. Para que la proporción entre el ancho de la señal y la distancia sea 1 a 1 se utiliza un divisor de frecuencia para generar un reloj cuyos ciclos son equivalentes al tiempo que se demora la señal emitida por el ultrasonido en recorrer 1 cm. El diagrama de bloque que representa el funcionamiento del módulo es el siguiente:
@@ -82,7 +90,15 @@ El reloj *CLKOUT1* tiene período de 10 microsegundos, por lo tanto cuando la se
 
 ## Servomotor (*pwm.v*)
 
-El driver de este periférico corresponde a un simple módulo PWM, ya que el desplazamiento angular del servomotor se define por el ciclo útil de una señal PWM con período de 20 milisegundos. El diagrama de bloques que define el funcionamiento del módulo es el siguiente: 
+El driver de este periférico corresponde a un simple módulo PWM, ya que el desplazamiento angular del servomotor se define por el ciclo útil de una señal PWM con período de 20 milisegundos.  El diagrama que describe la conexión entre el driver y el periférico es el siguiente:
+
+![Screenshot](/Imagenes/servos.png)
+
+Y las ubicaciones de los registros en el mapa de memoria (*Soc_MemoryMap.csv*) son las siguientes:
+
+![Screenshot](/Imagenes/mem_servo.PNG)
+
+El diagrama de bloques que describe el funcionamiento del módulo es el siguiente: 
 
 ![Screenshot](/Imagenes/pwm.PNG)
 
