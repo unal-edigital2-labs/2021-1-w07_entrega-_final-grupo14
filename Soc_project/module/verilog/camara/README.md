@@ -37,13 +37,27 @@ Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, adema
 
 ### Prueba 1: Sin luz
 
+<p align="center">
+  <img src="/Imagenes/20210815_153323.jpg" align="center" width="480">
+</p>
+
 ### Prueba 2: Poca luz
+
+<p align="center">
+  <img src="/Imagenes/20210815_153356.jpg" align="center" width="480">
+</p>
 
 ### Prueba 3: Con luz
 
+<p align="center">
+  <img src="/Imagenes/20210815_153440.jpg" align="center" width="480">
+</p>
+
 ### Prueba 4: Mucha luz
 
-
+<p align="center">
+  <img src="/Imagenes/20210816_153254_capture.jpg" align="center" width="480">
+</p>
 
 # Integración camara con el procesador
 El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
