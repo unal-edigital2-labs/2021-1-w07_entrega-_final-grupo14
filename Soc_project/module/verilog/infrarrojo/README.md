@@ -19,7 +19,7 @@ A continuacion observamos el modulo en verilog del infrarrojo, el desarrollo de 
 
     endmodule
 ```
-A partir de lo anterior podemos ver el siguiente diagrama de bloques donde vemos la coneccion con el periferico de infrarrojo, en este observamos que la conexion se logra gracias al
+A partir de lo anterior podemos ver el siguiente diagrama de bloques donde vemos la conexión con el periferico de infrarrojo, en este observamos que la conexión se logra gracias a al modulo infrarrojo.py que a su vez su implementación dentro del **buildSoCproject.py** permite la creación de su espacio de memoria  
 ![Screenshot](/Imagenes/infras.png)
-
+Por ultimo vemos su espacio de memoria dentro del archivo ****.
 ![Screenshot](/Imagenes/mem_infra.PNG)
