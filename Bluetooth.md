@@ -5,5 +5,16 @@ La conexión del bluetooth no se hizo directamente con la uart de la FPGA dado q
 
 Por ultimo, mostraremos el codigo de arduino que se uso para la comunicacion con el bluetooth.
 
+```C
+     if(miBT.available()){
+        dato1 = miBT.read();
+        Serial3.write(dato1);
 
+        }
+
+      if(Serial3.available()){
+        dato3 = Serial3.read();
+        miBT.write(dato3);
+        }
+```
 
