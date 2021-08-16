@@ -20,8 +20,7 @@ Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion d
 
 ![Screenshot](/Imagenes/DFP2.jpg)
 
-En la siguiente imagen se puede observar la conexión con el DFP palyer mini, esta conectado a partir de una uart2 creada en el **buildSoCproject.py** De esta manera tambien se crea su mapa de memoria gracias a litex.
-
+En la siguiente imagen se puede observar la conexión con el DFP palyer mini, esta conectado a partir de un modulo **uart2.py** por los pines Rx y Tx, y a su vez esta uart2 fue creada en el **buildSoCproject.py** creando las conexiones y espacios de memoria gracias a la herramienta de Litex.
 
 ![Screenshot](/Imagenes/DFP.png)
 
