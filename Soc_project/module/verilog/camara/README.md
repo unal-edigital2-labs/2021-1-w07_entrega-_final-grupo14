@@ -2,8 +2,11 @@
 Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers nos guiamos en el trabajo realizado por el Grupo 5 del semestre 2019-II ([Cámara](https://github.com/unal-edigital1-2019-2/work04-proyectofinal-grupo-05-1)). 
 
 
-# Pruebas de imagen y configuracion de la camara
-![Screenshot](/Imagenes/camara2.png)
+# Pruebas de imagen y configuración de la camara
+
+Las pruebas de imagen se desarrollaron mediante un driver de VGA en verilog (VGA_driver.v) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos, almacenamiento, y generacion de clk's. Como se puede ver:
+ ![Screenshot](/Imagenes/camara2.png)
+ 
 
 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
