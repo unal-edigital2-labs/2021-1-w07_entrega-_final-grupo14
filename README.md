@@ -16,7 +16,9 @@ El diagrama que describe cómo se encuentra conformado el robot cartógrafo y la
 
 El mapa de memoria se encuentra detalladamente en el archivo *Soc_MemoryMap.csv*, las bases correspondientes para cada driver del SoC son las siguientes:
 
-![Screenshot](/Imagenes/mem_bases.PNG)
+<p align="center">
+  <img src="/Imagenes/mem_bases.PNG" align="center">
+</p>
 
 A continuación haremos una breve explicación del Soc, el firmware y los perfiféricos integrados al Soc junto a sus respectivos links en donde se puede observar su funcionamiento más en detalle.
 
