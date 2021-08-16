@@ -8,7 +8,7 @@ En la siguiente imagen se observa un diagrama de las conexiones anetriormente me
 A continuacion observamos un diagrama con la conexión del arduino con los modulos uart 1 y 3, la explicacion de su funcionamiento se encuentra dentro del archivo [Bluetooth](/Soc_project/Bluetooth/). De la misma, la implementación de estos modulos dentro del [buildSocProject.py](/Soc_project/buildSoCproject.py) permite la creacion de su espacio de memoria gracias a Litex 
 ![Screenshot](/Imagenes/Bluetooth.png)
 
-Por ultimo observamos el mapa de memoria creado en el archivo **Soc_MemoryMap.csv** para las uarts.
+Por ultimo observamos el mapa de memoria creado en el archivo [Soc_MemoryMap.csv](/Soc_project/Soc_MemoryMap.csv) para las uarts.
 <p align="center">
   <img src="/Imagenes/mem_uart13.PNG" align="center">
 </p>
