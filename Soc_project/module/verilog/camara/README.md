@@ -4,7 +4,7 @@ Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers 
 
 # Pruebas de imagen y configuración de la camara
 
-Las pruebas de imagen se desarrollaron mediante un proyecto implementado en verilog, en donde el modulo top ([test_cam.v](Soc_project/module/verilog/camara/test_cam.v)) se encargaba de coordinar un driver de VGA ([VGA_driver.v](Soc_project/module/verilog/camara/VGA_driver.v)) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos ([cam_read.v](Soc_project/module/verilog/camara/cam_read.v)), almacenamiento ([buffer_ram_dp.v](Soc_project/module/verilog/camara/buffer_ram_dp.v)), y generacion de clk's ([clk24_25_nexys4.v](Soc_project/module/verilog/camara/clk24_25nexys4.v)). Como se puede ver:
+Las pruebas de imagen se desarrollaron mediante un proyecto implementado en verilog, en donde el modulo top ([test_cam.v](/Soc_project/module/verilog/camara/test_cam.v)) se encargaba de coordinar un driver de VGA ([VGA_driver.v](/Soc_project/module/verilog/camara/VGA_driver.v)) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos ([cam_read.v](/Soc_project/module/verilog/camara/cam_read.v)), almacenamiento ([buffer_ram_dp.v](/Soc_project/module/verilog/camara/buffer_ram_dp.v)), y generacion de clk's ([clk24_25_nexys4.v](/Soc_project/module/verilog/camara/clk24_25nexys4.v)). Como se puede ver:
  ![Screenshot](/Imagenes/camara2.png)
  Por otro lado tambien era necesario realizar la configuracion de los registros de la camara por medio de I2C, de donde nos servimos de un arduino para llevar a cabo dicho procedimiento.
 
