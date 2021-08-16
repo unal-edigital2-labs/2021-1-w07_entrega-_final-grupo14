@@ -66,6 +66,7 @@ Al acercarle la lampara a la camara, se distorsiona la imagen hasta el punto de 
   <img src="/Imagenes/20210816_153254_capture.jpg" align="center" width="480">
 </p>
 
+En conclusion, se necesitan condiciones idoneas para que la camara pueda capturar los datos correspondientes a los diferentes colores que se colocaran en el laberinto. Por lo contrario, se generan errores al momento de realizar el analisis posterior de estos datos.
 
 # Integración camara con el procesador
 El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
