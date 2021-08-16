@@ -1,1 +1,5 @@
+Bluetooth  :arrows_counterclockwise:
+## Bluetooth :calling:
+Se uso un dispositivo Bluetooth de referencia HC-05, este posee 4 pines, dos de alimentación y otros dos para ser conectados a una uart, las cuales estan comunicados con la FPGA siendo un pin RX para la lectura y otro TX para la escritura hacia el periferico, la creación de esta uart se realizo dentro del archivo **buildSoCproject.py** como una copia dado que se necesita otra uart para el periferico del DFP player mini. No se realizo un modulo en Verilog dado que manejamos ambos perifericos con las Uart y el desarrollo de su funcionamiento se encuentra dentro del firmware como funciones. Sin embargo, cabe destacar que la comunicación es serial de tal forma que para enviar datos por el bluetooth se usaron funciones *for* con el fin de enviar dato a dato la matriz en donde se encuentra el robot y la información que a detectada hacia un celular donde el usuario pueda observar esta información.
 
+![Screenshot](/Imagenes/bluetooth.png)
