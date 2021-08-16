@@ -31,6 +31,7 @@ De igual forma tambien se establecen una serie de registros, que se denominaron 
 Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, ademas de la correspondiente configuracion de los registros en Arduino, nos percatamos de distintos escenarios favorables y desfavorables en los cuales se podria encontrar nuestra camara al momento de las respectivas pruebas con el Robot cartografo. Adicionalmente utilizaremos la siguiente paleta de colores improvisada para comprobar la imagen que se esta recibiendo de la camara. 
 
 
+![Screenshot](/Imagenes/20210815_153806.jpg)
 
 ### Prueba 1: Sin luz
 
