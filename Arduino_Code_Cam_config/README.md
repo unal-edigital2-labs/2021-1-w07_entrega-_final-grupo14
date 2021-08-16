@@ -22,4 +22,4 @@ Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion d
 ![Screenshot](/Imagenes/DFP2.jpg)
 
 ## Mapa de memoria
-![Screenshot](/Imagenes/mem_uart13.PNG)
+![Screenshot](/Imagenes/mem_uart2.PNG)
