@@ -1,7 +1,9 @@
 # Infrarrojo :footprints:
 El periferico de los sensores seguidores de linea que funcionan a partir de infrarrojos, el que se uso dentro del proyecto posee 5 sensores como se puede ver en la siguiente imagen.
 
-![Screenshot](/Imagenes/IR.jpeg)
+<p align="center">
+  <img src="/Imagenes/IR.jpeg" align="center">
+</p>
 
 Este periferico se uso a partir de un driver del infrarrojo es decir que cada uno de estos sensores posee un solo pin de entrada y de salida, cabe destacar que este periferico ademas de las 5 conexiones con el driver posee otros dos pines los cuales son de alimentacion GND y el otro debe ser alimentado con 5V que obtenemos del arduino.
 
@@ -25,4 +27,7 @@ A partir de lo anterior podemos ver el siguiente diagrama de bloques donde vemos
 
 Por ultimo vemos su espacio de memoria dentro del archivo **Soc_MemoryMap.csv**.
 
-![Screenshot](/Imagenes/mem_infra.PNG)
+<p align="center">
+  <img src="/Imagenes/mem_infra.PNG" align="center">
+</p>
+
