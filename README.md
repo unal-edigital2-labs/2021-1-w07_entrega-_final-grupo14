@@ -33,9 +33,9 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 - [Radar](/Soc_project/module/verilog/ultrasonido/)
 - [Motores](/Soc_project/module/verilog/motor/)
 - [Infrarrojos](/Soc_project/module/verilog/infrarrojo/)
-- [DFP player mini](/Arduino_Code_Cam_config/)
-- Bluetooth
-- Arduino
+- [DFP player mini](/Soc_project/DFP_Player/)
+- [Bluetooth](/Soc_project/Bluetooth/)
+- [Arduino](/Arduino_Code_Cam_config/)
 
 ## Pruebas de Funcionamiento :clapper:
 
