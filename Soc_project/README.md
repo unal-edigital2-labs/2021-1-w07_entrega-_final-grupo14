@@ -3,7 +3,7 @@ EL proyecto del robot cartógrafo se basa en la creación de un SoC (System of C
 
 ![Screenshot](/Imagenes/Soc.png)
 
-## Periféricos :electric_plug:
+### Periféricos :electric_plug:
 Aquí presentamos una lista de los periféricos que se conectaron al SoC.
 - [Cámara](/Soc_project/module/verilog/camara/)
 - [Radar](/Soc_project/module/verilog/ultrasonido/)
