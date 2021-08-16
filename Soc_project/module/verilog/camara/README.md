@@ -1,7 +1,7 @@
 # Cámara 📸
 Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers nos guiamos en el trabajo realizado por el Grupo 5 del semestre 2019-II ([Cámara](https://github.com/unal-edigital1-2019-2/work04-proyectofinal-grupo-05-1)). El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama:
 
-![Screenshot](/Imagenes/camara1.PNG)
+![Screenshot](/Imagenes/camara1.png)
 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
 Se establecen los valores de los registros de la cámara por medio del protocolo de comunicación serial I2C, se utilizo un microcontrolador Arduino para llevar a cabo este proceso y se describe en el archivo *Camara_OV.ino*. El código con el cual se establecen los registros y el formato de la cámara es el siguiente:
