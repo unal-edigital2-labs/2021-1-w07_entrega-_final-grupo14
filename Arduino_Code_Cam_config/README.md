@@ -1,5 +1,5 @@
 # Arduino  :arrows_counterclockwise:
-El Arduino MEGA 2560 se uso para la creación de la comunicación seria del I2c, por medio de este se configuraban los registros de la camara para que pudiera obtener una buena imagen. El arduino estaba conectado a la camara por medio de dos pines SCL y SDA, a su vez para la comunicación con el Bluetooth, el Arduino esta conectado a la uart1 y la uart3, por lo tanto las conexiones con la FPGA son los pines seriales del arduino de lectura y escritura 2 y 3. De esta misma manera se usa los pines digitales 10 y 11 del arduino para conectarlos con el Bluetooth. 
+El Arduino MEGA 2560 se uso para la creación de la comunicación seria del I2c, por medio de este se configuraban los registros de la camara para que pudiera obtener una buena imagen. El arduino estaba conectado a la camara por medio de dos pines SCL y SDA, a su vez para la comunicación con el Bluetooth, el Arduino esta conectado a la uart1 y la uart3, por lo tanto las conexiones con la FPGA son los pines seriales del arduino de lectura y escritura 2 y 3. De esta misma manera se usa los pines digitales 10 y 11 del arduino para conectarlos con el [Bluetooth](/Soc_project/Bluetooth/). 
 
 En la siguiente imagen se observa un diagrama de las conexiones anetriormente mencionadas.
 
