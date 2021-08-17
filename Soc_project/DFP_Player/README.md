@@ -1,5 +1,5 @@
 # DFP player mini :sound:
- La comunicación con el DFP player se basa que por el pin de TX (escritura) se envia una serie de 10 bytes las cuales estan organizados de la siguiente manera:
+ La comunicación con el DFP player se basá que por el pin de TX (escritura) se envía una serie de 10 bytes las cuales estan organizados de la siguiente manera:
 
 
 | Byte | Descripción |
@@ -14,19 +14,19 @@
 | checksum | Suma y verificación de los valores que se van a enviar |
 | $O | Byte final que dice que se termino la orden enviada |
 
-De esta manera para usar dar ordenes al DFP player se uso una función llamada **sendInfo()** con la cual solo modificamos los valores de **CMD**, **parm1** y **parm2** para reproducir un audio, parar el audio, subir el volumen y demas. La idea es que estos audios se reproduscan cada vez que la camara detecte el color de una pared dandonos la información por un parlante de 8W.
+De esta manera para usar dar ordenes al DFP player se uso una función llamada **sendInfo()** con la cual solo modificamos los valores de **CMD**, **parm1** y **parm2** para reproducir un audio, parar el audio, subir el volumen y demás. La idea es que estos audios se reproduzcan cada vez que la cámara detecte el color de una pared dandonos la información por un parlante de 8W.
 
-Pasando a las conexiones del DFP player se uso el pin VCC para la alimentacion de 5v con un arduino, los pines RX y TX como se menciono anteriormente irian conectados a la FPGA para la comunicacion con la Uart y el manejo del periferico, el pin GND como la tierra y por ultimo el DFP player posee un espacio para almacenar una memoria SD la cual posee los audios utilizados en el proyecto. Estos audios son nombrados como 0001, 0002... Esto dado que al ingresar el **parm2** dentro de la orden del DFP player pueda encontrar y reproducir el audio.
+Pasando a las conexiones del DFP player se usó el pin VCC para la alimentación de 5v con un arduino, los pines RX y TX como se mencionó anteriormente irían conectados a la FPGA para la comunicación con la Uart y el manejo del periférico, el pin GND como la tierra y por ultimo el DFP player posee un espacio para almacenar una memoria SD la cual posee los audios utilizados en el proyecto. Estos audios son nombrados como 0001, 0002... Esto dado que al ingresar el **parm2** dentro de la orden del DFP player pueda encontrar y reproducir el audio.
 
 <p align="center">
   <img src="/Imagenes/DFP2.jpg" align="center">
 </p>
 
-En la siguiente imagen se puede observar la conexión con el DFP palyer mini, esta conectado a partir de un modulo **uart2.py** por los pines Rx y Tx, y a su vez esta uart2 fue creada en el ([buildSoCproject.py](/Soc_project/buildSoCproject.py)) creando las conexiones y espacios de memoria gracias a la herramienta de Litex.
+En la siguiente imagen se puede observar la conexión con el DFP player mini, está conectado a partir de un módulo **uart2.py** por los pines Rx y Tx, y a su vez esta uart2 fue creada en el ([buildSoCproject.py](/Soc_project/buildSoCproject.py)) creando las conexiones y espacios de memoria gracias a la herramienta de Litex.
 
 ![Screenshot](/Imagenes/DFP.png)
 
-En esta imagen podemos observar el espacio de memoria creado para la uart2 con los pines de lectura-escritura y de solo lectura.
+En esta imagen podemos observar el espacio de memoria creado para la Uart2 con los pines de lectura-escritura y de solo lectura.
 
 <p align="center">
   <img src="/Imagenes/mem_uart2.PNG" align="center">
