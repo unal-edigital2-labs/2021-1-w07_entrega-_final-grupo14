@@ -71,7 +71,7 @@ En conclusión, se necesitan condiciones idóneas para que la cámara pueda capt
 # Integración camara con el procesador
 El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama, en donde se hace la integracion de los modulos en verilog mencionados anteriormente y el modulo en python [camara.py](/Soc_project/module/camara.py):
 
-![Screenshot](/Imagenes/camara1.png)
+![Screenshot](/Imagenes/correc.png)
 
 
 ## Captura de datos ([cam_read.v](/Soc_project/module/verilog/camara/cam_read.v))
