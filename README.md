@@ -44,7 +44,7 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 ### Alimentación:
 El proyecto en general, a excepcion de los motores, se alimenta con una powerbank de dos puertos que provee de energia tanto a la FPGA como a el Arduino Mega2560.
 <p align="center">
-  <img src="/Imagenes/powerbank.jpeg" align="center">
+  <img src="/Imagenes/powerbank.jpeg" align="center" width="400px">
 </p>
 
 ### Mantener Hardware y Firmware FPGA:
