@@ -43,6 +43,6 @@ El codigo de arriba hace referencia al codigo usado para la implementacion del p
     SoCCore.add_csr(self,"ultra_cntrl")
     self.submodules.ultra_cntrl = ultrasonido.Ultra(platform.request("trigg"),platform.request("ECHO"))
 ```    
- Luego pasamos al archivo [buildSoCproject.py](/Soc_project/buildSoCproject.py)  dentro de este creamos las anteriores lineas de codigo en donde la primera se crea el espacio de memoria para el ultra sonido, luego en la segunda linea de codigo se relacionan los pines fisicos con la clase Ultra creada anteiormente dentro del archivo .py para que se realcionen con el modulo en verilog. lUego de esto solo basta compilar este archivo para que se guarden los cambios y la conexion entre el periferico y el SoC.
+ Luego pasamos al archivo [buildSoCproject.py](/Soc_project/buildSoCproject.py)  dentro de este creamos las anteriores lineas de codigo en donde la primera se crea el espacio de memoria para el ultra sonido, luego en la segunda linea de codigo se relacionan los pines fisicos con la clase Ultra creada anteiormente dentro del archivo .py para que se realcionen con el modulo en verilog. Luego de esto solo basta compilar este archivo para que se guarden los cambios y la conexion entre el periferico y el SoC.
  
  
