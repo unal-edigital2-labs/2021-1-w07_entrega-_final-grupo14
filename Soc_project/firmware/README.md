@@ -267,7 +267,7 @@ Ahora se usa la funcón de **DFP_setup()** para darle los valores iniciales al D
 
  ```C	
 	DFP_setup(); /* Se establecen los valores del DFP*/
-	for(int i = 0; i < 6; i++) { 		/* Rellenar la matriz de 0 */
+	for(int i = 0; i < 6; i++) { 		/* Rellenar la matriz de P */
 		for(int j = 0; j < 5; j++) {
 		matriz[i][j] = 80;
 		}
