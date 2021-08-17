@@ -36,7 +36,7 @@ Para poder hacer la integración de los periféricos se crearon módulos en Veri
             i_ECHO=self.ECHO,
         )
  ```
-El codigo de arriba hace referencia al codigo usado para la implementacion del periferico del ultrasonido ([ultrasonido.py](/Soc_project/module/ultrasonido.py)). Dentro de este podemos observar que se inicializan los pines de entrada del modulo [ultrasonido.v](/Soc_project/module/ultrasonido/ultrasonido.v) luego para crear los registros de memoria se usan dos función, la primera es CSRStatus() para registros de solo lectura cuyo argumento es el número de bits que usará, en este caso **"d"** son los pines de lectura y son 8 para obtener la distancia. Para las señales de lectura y escritura se usaran la función CSRStorage() como vemos es el caso de **"orden"** y por ultimo se hace la instanciación de nuestro modulo de verilog teniendo en cuenta los pines usados con sus espacios de memoria.
+El codigo de arriba hace referencia al codigo usado para la implementacion del periferico del ultrasonido ([ultrasonido.py](/Soc_project/module/ultrasonido.py)). Dentro de este podemos observar que se inicializan los pines de entrada del modulo [bloqueultrasonido.v](/Soc_project/module/verilog/ultrasonido/bloqueultrasonido.v) luego para crear los registros de memoria se usan dos función, la primera es CSRStatus() para registros de solo lectura cuyo argumento es el número de bits que usará, en este caso **"d"** son los pines de lectura y son 8 para obtener la distancia. Para las señales de lectura y escritura se usaran la función CSRStorage() como vemos es el caso de **"orden"** y por ultimo se hace la instanciación de nuestro modulo de verilog teniendo en cuenta los pines usados con sus espacios de memoria.
 
 ```python
     #ultrasonido
