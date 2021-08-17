@@ -24,10 +24,10 @@ A continuación haremos una breve explicación del Soc, el firmware y los perfif
 
 ## [SoC](/Soc_project/) :robot:
 
-En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishbone y los diferentes módulos de los periféricos que componen el robot. 
+En este enlace se describe la arquitectura del robot cartógrafo y el proceso que se llevo a cabo usando el entorno Litex para el ensamble y la integración del microprocesador picoRV32, el bus de datos Wishbone y los diferentes módulos de los periféricos que componen el robot. Para mas informacion remitase a [Soc](/Soc_project/). 
 
 ## [Firmware](/Soc_project/firmware/) :man_technologist:
-Dentro del enlace de firmware se encuentra la información del código usado para el desarrollo del funcionamiento del robot cartógrafo, de igual forma se puede observar la explicación de las funciones que se encuentran dentro del archivo [main.c](/Soc_project/firmware/main.c).
+Dentro del enlace de firmware se encuentra la información del código usado para el desarrollo del funcionamiento del robot cartógrafo, de igual forma se puede observar la explicación de las funciones que se encuentran dentro del archivo [main.c](/Soc_project/firmware/main.c). Para mas informacion remitase a [firmware](/Soc_project/firmware/). 
 
 ## Periféricos :electric_plug:
 Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, cada uno de estos links mostraran el módulo en verilog y a su vez se hace una explicación detallada del código utilizado para el funcionamiento del módulo de cada periférico.
