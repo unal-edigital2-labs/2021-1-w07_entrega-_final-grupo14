@@ -42,13 +42,13 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 ## Mantener código cargado FPGA
 
 ### Alimentación:
-El proyecto en general, a excepcion de los motores, se alimenta con una powerbank de dos puertos que provee de energia tanto a la FPGA como a el Arduino Mega2560.
+El proyecto en general, a excepción de los motores, se alimenta con una powerbank de dos puertos que provee de energía tanto a la FPGA como a el Arduino Mega2560.
 <p align="center">
   <img src="/Imagenes/powerbank.jpeg" align="center" width="400px">
 </p>
 
 ### Mantener Hardware y Firmware FPGA:
-Es claro que al momento de realizar la sintetizacion del hardware, la compilacion del firmware y cargar todo a la FPGA, todo funciona correctamente mientras se mantenga conectada al computador. Sin embargo al momento de desconectar el micro-usb(J6) por el cual se esta alimentado y cargando los archivos a la FPGA, se pierden todos los cambios ejecutados sobre esta. Por este motivo se decidio mantener la FPGA encendida en todo momento para que no se pierdan el archivo de hardware y las diferentes compilaciones de firmware que se ejecuten en el proceso de testeo.
+Es claro que al momento de realizar la sintetización del hardware, la compilación del firmware y cargar todo a la FPGA, todo funciona correctamente mientras se mantenga conectada al computador. Sin embargo al momento de desconectar el micro-usb(J6) por el cual se está alimentado y cargando los archivos a la FPGA, se pierden todos los cambios ejecutados sobre esta. Por este motivo se decidio mantener la FPGA encendida en todo momento para que no se pierdan el archivo de hardware y las diferentes compilaciones de firmware que se ejecuten en el proceso de testeo.
 Cabe aclarar que se esta trabajando con una **FPGA - Nexys 4DDR**, y que esta tarjeta nos da la posibilidad de cambiar su puerto de alimentacion, por lo que el procedimiento es simple y consiste en cambiar la alimentacion de la FPGA del puerto micro-usb(J6) al Jack(J13).
 
 <p align="center">
