@@ -4,9 +4,9 @@ Se utilizo una cámara de referencia OV7670 y para el desarrollo de los drivers 
 
 # Pruebas de imagen y configuración de la camara
 
-Las pruebas de imagen se desarrollaron mediante un proyecto implementado en verilog, en donde el modulo top ([test_cam.v](/Soc_project/module/verilog/camara/test_cam.v)) se encargaba de coordinar un driver de VGA ([VGA_driver.v](/Soc_project/module/verilog/camara/VGA_driver.v)) proporcionado en el repositorio WP02. Ademas de los distintos modulos implementados que permiten la captura y downsampling de datos ([cam_read.v](/Soc_project/module/verilog/camara/cam_read.v)), almacenamiento ([buffer_ram_dp.v](/Soc_project/module/verilog/camara/buffer_ram_dp.v)), y generacion de clk's ([clk24_25_nexys4.v](/Soc_project/module/verilog/camara/clk24_25nexys4.v)). Como se puede ver:
+Las pruebas de imagen se desarrollaron mediante un proyecto implementado en verilog, en donde el módulo top ([test_cam.v](/Soc_project/module/verilog/camara/test_cam.v)) se encargaba de coordinar un driver de VGA ([VGA_driver.v](/Soc_project/module/verilog/camara/VGA_driver.v)) proporcionado en el repositorio WP02. Además de los distintos módulos implementados que permiten la captura y downsampling de datos ([cam_read.v](/Soc_project/module/verilog/camara/cam_read.v)), almacenamiento ([buffer_ram_dp.v](/Soc_project/module/verilog/camara/buffer_ram_dp.v)), y generacion de clk's ([clk24_25_nexys4.v](/Soc_project/module/verilog/camara/clk24_25nexys4.v)). Como se puede ver:
  ![Screenshot](/Imagenes/camara2.png)
- Por otro lado tambien era necesario realizar la configuracion de los registros de la camara por medio de I2C, de donde nos servimos de un arduino para llevar a cabo dicho procedimiento.
+ Por otro lado tambien era necesario realizar la configuración de los registros de la cámara por medio de I2C, de donde nos servimos de un arduino para llevar a cabo dicho procedimiento.
 
 
 ## Configuración cámara por I2C (*Camara_OV.ino*)
@@ -28,7 +28,7 @@ De igual forma tambien se establecen una serie de registros, que se denominaron 
 
 ## Pruebas de imagen
 
-Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, ademas de la correspondiente configuracion de los registros en Arduino, nos percatamos de distintos escenarios favorables y desfavorables en los cuales se podria encontrar nuestra camara al momento de las respectivas pruebas con el Robot cartografo. Adicionalmente utilizaremos la siguiente paleta de colores improvisada para comprobar la imagen que se esta recibiendo de la camara. 
+Al realizar la implementación del proyecto en verilog y subirlo a la FPGA, además de la correspondiente configuración de los registros en Arduino, nos percatamos de distintos escenarios favorables y desfavorables en los cuales se podria encontrar nuestra cámara al momento de las respectivas pruebas con el Robot cartógrafo. Adicionalmente utilizamos la siguiente paleta de colores improvisada para comprobar la imagen que se está recibiendo de la cámara. 
 
 <p align="center">
   <img src="/Imagenes/20210815_153806.jpg" align="center" width="480">
@@ -37,14 +37,14 @@ Al realizar la implementacion del proyecto en verilog y subirlo a la FPGA, adema
 
 ### Prueba 1: Sin luz
 
-Sin luz la paleta de colores es ligeramente visible para la camara, impidiendo el analisis para colores como verde y azul.
+Sin luz la paleta de colores es ligeramente visible para la cámara, impidiendo el análisis para colores como verde y azul.
 <p align="center">
   <img src="/Imagenes/20210815_153323.jpg" align="center" width="480">
 </p>
 
 ### Prueba 2: Poca luz
 
-Al encender un led blanco instalado en el robot cartografo,la relfexion que provoca este sobre la paleta de colores permite que se puedan distinguir mas los colores azul y verde.
+Al encender un led blanco instalado en el robot cartógrafo, la relfexión que provoca este sobre la paleta de colores permite que se puedan distinguir más los colores azul y verde.
 
 <p align="center">
   <img src="/Imagenes/20210815_153356.jpg" align="center" width="480">
@@ -52,7 +52,7 @@ Al encender un led blanco instalado en el robot cartografo,la relfexion que prov
 
 ### Prueba 3: Con luz
 
-Esta prueba se realizo con lamparas de luz, siendo la situacion ideal para la cual la camara realiza una captura de datos correcta. Sin embargo cabe aclarar que son condiciones que cambian dependiendo de la luz ambiente. 
+Esta prueba se realizó con lamparas de luz, siendo la situación ideal para la cual la cámara realiza una captura de datos correcta. Sin embargo cabe aclarar que son condiciones que cambian dependiendo de la luz ambiente. 
 
 <p align="center">
   <img src="/Imagenes/20210815_153440.jpg" align="center" width="480">
@@ -60,13 +60,13 @@ Esta prueba se realizo con lamparas de luz, siendo la situacion ideal para la cu
 
 ### Prueba 4: Mucha luz
 
-Al acercarle la lampara a la camara, se distorsiona la imagen hasta el punto de realizar una captura de datos erronea, este caso nos impide reconocer claramente los colores de la paleta, y debe ser evitado.
+Al acercarle la lampara a la cámara, se distorsiona la imagen hasta el punto de realizar una captura de datos erronea, este caso nos impide reconocer claramente los colores de la paleta, y debe ser evitado.
 
 <p align="center">
   <img src="/Imagenes/20210816_153254_capture.jpg" align="center" width="480">
 </p>
 
-En conclusion, se necesitan condiciones idoneas para que la camara pueda capturar los datos correspondientes a los diferentes colores que se colocaran en el laberinto. Por lo contrario, se generan errores al momento de realizar el analisis posterior de estos datos.
+En conclusión, se necesitan condiciones idóneas para que la cámara pueda capturar los datos correspondientes a los diferentes colores que se colocaran en el laberinto. Por lo contrario, se generan errores al momento de realizar el análisis posterior de estos datos.
 
 # Integración camara con el procesador
 El funcionamiento de la cámara y el procesamiento de las imagenes se describen de forma general en el siguente diagrama, en donde se hace la integracion de los modulos en verilog mencionados anteriormente y el modulo en python [camara.py](/Soc_project/module/camara.py):
