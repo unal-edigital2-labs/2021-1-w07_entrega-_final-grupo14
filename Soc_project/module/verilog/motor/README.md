@@ -49,4 +49,4 @@ El código utilizado para la realización del módulo es el siguiente:
       end
   ```
       
-El funcionamiento del módulo se basa en que según el valor de la señal de entrada *estado* se establecen los valores de los 4 pines de salida siguiendo la tabla descrita anteriormente para que los motores realicen la acción deseada. 
+El funcionamiento del módulo se basa en que según el valor de la señal de entrada **estado** se establecen los valores de los 4 pines de salida siguiendo la tabla descrita anteriormente para que los motores realicen la acción deseada. 
