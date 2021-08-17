@@ -3,7 +3,7 @@ El funcionamiento de este periférico se basa en que, por medio de un sensor de 
 
 ## Ultrasonido
 
-Para el desarrollo de los drivers correspondientes a este periférico nos guiamos por el trabajo realizado por el Grupo 2 del semestre 2020-II ([Ultrasonido](https://github.com/unal-edigital2/w07_entrega-_final-grupo02/tree/main/Hardware/Modulos/ultrasonido)), en donde para determinar la distancia se utilizan principalmente dos módulos ([contador.v](/Soc_project/module/verilog/ultrasonido/contador.v) y [genpulsos.v](/Soc_project/module/verilog/ultrasonido/genpulsos.v)) junto a otros módulos auxiliares que cumplen la función de divisores de frecuencia para hacer relojes o se encargan de que se cumpla la máquina de estados. El diagrama que describe la conexión entre los drivers de este periférico es el siguiente (para mas informacion remitase a [HC-SR04](/datasheets/HC-SR04.pdf)):
+Para el desarrollo de los drivers correspondientes a este periférico nos guiamos por el trabajo realizado por el Grupo 2 del semestre 2020-II ([Ultrasonido](https://github.com/unal-edigital2/w07_entrega-_final-grupo02/tree/main/Hardware/Modulos/ultrasonido)), en donde para determinar la distancia se utilizan principalmente dos módulos ([contador.v](/Soc_project/module/verilog/ultrasonido/contador.v) y [genpulsos.v](/Soc_project/module/verilog/ultrasonido/genpulsos.v)) junto a otros módulos auxiliares que cumplen la función de divisores de frecuencia para hacer relojes o se encargan de que se cumpla la máquina de estados. El diagrama que describe la conexión entre los drivers de este periférico es el siguiente (para más informacion remitase a [HC-SR04](/datasheets/HC-SR04.pdf)):
 
 ![Screenshot](/Imagenes/ultra.png)
 
@@ -99,7 +99,7 @@ El reloj **CLKOUT1** tiene período de 10 microsegundos, por lo tanto cuando la 
 
 ## Servomotor ([pwm.v](/Soc_project/module/verilog/ultrasonido/pwm.v))
 
-El driver de este periférico corresponde a un simple módulo PWM, ya que el desplazamiento angular del servomotor se define por el ciclo útil de una señal PWM con período de 20 milisegundos.  El diagrama que describe la conexión entre el driver y el periférico es el siguiente (para mas informacion remitase a [Futaba S3003](/datasheets/s003.pdf)):
+El driver de este periférico corresponde a un simple módulo PWM, ya que el desplazamiento angular del servomotor se define por el ciclo útil de una señal PWM con período de 20 milisegundos.  El diagrama que describe la conexión entre el driver y el periférico es el siguiente (para más informacion remitase a [Futaba S3003](/datasheets/s003.pdf)):
 
 ![Screenshot](/Imagenes/servos.png)
 
