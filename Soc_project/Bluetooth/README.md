@@ -7,7 +7,7 @@ Se uso un dispositivo Bluetooth de referencia HC-05, este posee 4 pines, dos de 
 
 La conexión del bluetooth no se hizo directamente con la uart de la FPGA dado que hubo un problema de comunicación, de esta manera se conectaron la uart1 y uart3 a un Arduino MEGA 2560 y este solamente recibirá la información de las uart y transmitirá al periférico bluetooth para luego recibirla en el celular. La Uart1 se usó para transmitir la información de la matriz por donde el robot está pasando y lo que esta viendo, mientras que la Uart3 se uso para recibir los comandos dados por el usuario para activar ciertas funciones, se hicieron estas dos uarts para evitar problemas de sincronización a la hora de ejecutar las funciones.
 
-Por ultimo, mostraremos el código de arduino que se usó para la comunicación con el bluetooth, por un lado se recibe lo que manda la FPGA y se transmite, y luego lo que llega por el bluetooth y se envía a la FPGA.
+Por ultimo, mostraremos el código de arduino que se usó para la comunicación con el bluetooth, por un lado se recibe lo que manda la FPGA y se transmite, y luego lo que llega por el bluetooth y se envía a la FPGA (para mas informacion remitase a [HC-05](/datasheets/Bluetooth.pdf)).
 
 ```C
      if(miBT.available()){
