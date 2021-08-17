@@ -39,6 +39,17 @@ Aquí presentamos una lista de los periféricos usados en el robot cartógrafo, 
 - [Bluetooth](/Soc_project/Bluetooth/)
 - [Arduino](/Arduino_Code_Cam_config/)
 
+## Mantener código cargado FPGA
+
+### Alimentación:
+El proyecto en general, a excepcion de los motores, se alimenta con una powerbank de dos puertos que provee de energia tanto a la FPGA como a el Arduino Mega2560.
+
+### Mantener Hardware y Firmware FPGA:
+Es claro que al momento de realizar la sintetizacion del hardware, la compilacion del firmware y cargar todo a la FPGA, todo funciona correctamente mientras se mantenga conectada al computador. Sin embargo al momento de desconectar el micro-usb por el cual se esta alimentado y cargando los archivos a la FPGA, se pierden todos los cambios ejecutados sobre esta. Por este motivo se decidio mantener la FPGA encendida en todo momento para que no se pierdan el archivo de hardware y las diferentes compilaciones de firmware que se ejecuten en el proceso de testeo.
+Cabe aclarar que se esta trabajando con una **FPGA - Nexys 4DDR**, y que esta tarjeta nos da la posibilidad de cambiar su puerto de alimentacion, por lo que el procedimiento es simple y consiste en cambiar la alimentacion de la FPGA del puerto micro-usb al Jack.
+
+
+
 ## Pruebas de Funcionamiento :clapper:
 
 En los siguientes enlaces se encuentran los videos correspondientes a las pruebas de funcionamiento realizadas al robot cartógrafo, en ellos se puede observar al robot recorriendo el laberinto de forma autónoma a medida que reconoce los colores de las paredes. De igual forma, se observa simultaneamente la impresión del mapeo realizado por el robot que se envía a un celular por medio de bluetooth.
