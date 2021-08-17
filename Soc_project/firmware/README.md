@@ -97,7 +97,7 @@ Para la funcion radar se le introducen dos funciones que anteriormente mencionam
 ```C
     unsigned int orden = 0;
     unsigned int distancia = 0;
-    unsigned int limite_distancia = 10;
+    unsigned int limite_distancia = 30;
     unsigned int done = 0; 
     unsigned int period = 2000000;
     unsigned int dutty = 0;
