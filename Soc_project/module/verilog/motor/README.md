@@ -18,7 +18,7 @@ El puente H, según los valores de sus entradas, permite que el robot avance, gi
 
 
 
-Teniendo en cuenta la anterior tabla se desarrollo el módulo ***Motor.v*** que cumple la función de driver para los motores. El diagrama que describe las conexiones de este driver con el periférico es el siguiente:
+Teniendo en cuenta la anterior tabla se desarrollo el módulo [Motor.v](/Soc_project/module/verilog/Motor.v) que cumple la función de driver para los motores. El diagrama que describe las conexiones de este driver con el periférico es el siguiente:
 
 ![Screenshot](/Imagenes/punteH.png)
 
